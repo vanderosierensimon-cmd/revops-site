@@ -1,473 +1,638 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simon Vande Rosieren | RevOps Systems Architecture</title>
-    
-    <!-- Scripts Externes : On s'assure qu'ils sont bien chargés avant le rendu -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simon Vande Rosieren | RevOps Systems Consultant</title>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        :root {
-            --midnight-navy: #172554;
-            --soft-slate: #F8FAFC;
-        }
+  <!-- External scripts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF;
-            color: var(--midnight-navy);
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+    :root {
+      --midnight-navy: #172554;
+      --soft-slate: #F8FAFC;
+    }
 
-        /* CRM Preview Window */
-        .crm-window {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 30px 60px rgba(23, 37, 84, 0.12);
-            border: 1px solid #e2e8f0;
-            overflow: hidden;
-            height: 520px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .crm-header {
-            height: 44px;
-            background: #f1f5f9;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            padding: 0 16px;
-            gap: 8px;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FFFFFF;
+      color: var(--midnight-navy);
+      margin: 0;
+      padding: 0;
+    }
 
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
-        
-        .pipeline-stage {
-            flex: 1;
-            padding: 16px;
-            background: #f8fafc;
-            border-right: 1px solid #f1f5f9;
-            min-width: 150px;
-        }
+    .section-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-        .deal-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            font-size: 11px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    /* CRM Preview Window */
+    .crm-window {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 30px 60px rgba(23, 37, 84, 0.12);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .status-badge {
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 9px;
-            display: inline-block;
-        }
+    .crm-header {
+      height: 44px;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 8px;
+    }
 
-        .step-active-text {
-            color: var(--midnight-navy);
-            opacity: 1 !important;
-            transform: translateX(12px);
-            font-weight: 800;
-        }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
 
-        .btn-midnight {
-            background-color: var(--midnight-navy);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-midnight:hover {
-            background-color: #1e3a8a;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(23, 37, 84, 0.2);
-        }
+    .pipeline-stage {
+      flex: 1;
+      padding: 16px;
+      background: #f8fafc;
+      border-right: 1px solid #f1f5f9;
+      min-width: 150px;
+    }
 
-        .pipeline-scroll::-webkit-scrollbar { width: 4px; }
-        .pipeline-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    .deal-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-size: 11px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-        /* Animation de chargement pour éviter le flash de texte brut */
-        #loader {
-            position: fixed;
-            inset: 0;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            transition: opacity 0.5s ease;
-        }
-    </style>
+    .status-badge {
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 9px;
+      display: inline-block;
+    }
+
+    .step-active-text {
+      color: var(--midnight-navy);
+      opacity: 1 !important;
+      transform: translateX(12px);
+      font-weight: 800;
+    }
+
+    .btn-midnight {
+      background-color: var(--midnight-navy);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .btn-midnight:hover {
+      background-color: #1e3a8a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(23, 37, 84, 0.2);
+    }
+
+    .pipeline-scroll::-webkit-scrollbar { width: 4px; }
+    .pipeline-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+    /* Loader */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Scrubber + toggles + signals (V2) */
+    .act-btn.active {
+      background: var(--midnight-navy);
+      color: white;
+      box-shadow: 0 10px 20px rgba(23, 37, 84, 0.18);
+    }
+
+    .toggle-pill{
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      padding: 10px 10px;
+      text-align: center;
+      color: #94a3b8;
+      background: #fff;
+      user-select: none;
+    }
+    .toggle-pill.on{
+      border-color: rgba(23, 37, 84, 0.25);
+      color: var(--midnight-navy);
+      background: #f8fafc;
+    }
+
+    .signals-box{
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px;
+      background: white;
+      font-size: 10px;
+      color: #64748b;
+    }
+    .signals-box strong{ color: var(--midnight-navy); }
+  </style>
 </head>
+
 <body class="antialiased opacity-0 transition-opacity duration-700" id="main-body">
 
-    <!-- Loader -->
-    <div id="loader">
-        <div class="text-[10px] font-black tracking-widest uppercase animate-pulse">Initialisation RevOps...</div>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="text-[10px] font-black tracking-widest uppercase animate-pulse">Initialisation RevOps...</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 py-6 bg-white/80 backdrop-blur-lg border-b border-slate-100">
+    <div class="section-container flex justify-between items-center">
+      <div class="text-sm font-black tracking-tighter uppercase flex items-center gap-3 text-[#172554]">
+        <div class="w-8 h-8 bg-[#172554] rounded-lg flex items-center justify-center text-white text-[10px]">SV</div>
+        Simon Vande Rosieren
+      </div>
+      <div class="hidden md:flex items-center gap-10">
+        <a href="#concept" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Concept</a>
+        <a href="#about" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Parcours</a>
+        <a href="#contact" class="btn-midnight px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest">Consultation</a>
+      </div>
     </div>
+  </nav>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 py-6 bg-white/80 backdrop-blur-lg border-b border-slate-100">
-        <div class="section-container flex justify-between items-center">
-            <div class="text-sm font-black tracking-tighter uppercase flex items-center gap-3 text-[#172554]">
-                <div class="w-8 h-8 bg-[#172554] rounded-lg flex items-center justify-center text-white text-[10px]">SV</div>
-                Simon Vande Rosieren
-            </div>
-            <div class="hidden md:flex items-center gap-10">
-                <a href="#concept" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Concept</a>
-                <a href="#about" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Parcours</a>
-                <a href="#contact" class="btn-midnight px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest">Consultation</a>
-            </div>
+  <!-- Hero -->
+  <section class="pt-52 pb-32">
+    <div class="section-container">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-3 mb-10 px-4 py-1.5 border border-[#172554]/10 text-slate-500 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase bg-slate-50">
+          <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+          RevOps Systems Consultant
         </div>
-    </nav>
 
-    <!-- Hero -->
-    <section class="pt-52 pb-32">
-        <div class="section-container">
-            <div class="max-w-4xl">
-                <div class="inline-flex items-center gap-3 mb-10 px-4 py-1.5 border border-[#172554]/10 text-slate-500 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase bg-slate-50">
-                    <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-                    RevOps & MarTech Architect
-                </div>
-                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-12 text-[#172554]">
-                    Ingénierie de <br>Revenu B2B.
-                </h1>
-                <p class="text-xl text-slate-500 mb-14 max-w-2xl leading-relaxed font-medium">
-                    J'aligne vos outils sur vos objectifs de vente. J'élimine les frictions technologiques pour transformer votre CRM en un moteur de décision stratégique.
-                </p>
-                <div class="flex flex-wrap gap-6">
-                    <a href="#contact" class="btn-midnight px-12 py-5 rounded-full font-bold text-xs uppercase tracking-widest">
-                        Optimiser mon système
-                    </a>
-                </div>
-            </div>
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-12 text-[#172554]">
+          Je transforme votre CRM <br>et votre funnel en machine à closer.
+        </h1>
+
+        <p class="text-xl text-slate-500 mb-14 max-w-2xl leading-relaxed font-medium">
+          Quand le pipeline existe mais ne convertit pas : je structure le système (stages, règles, data, automatisations) pour que Marketing & Sales travaillent sur les bons signaux — et que le closing devienne plus fiable.
+        </p>
+
+        <div class="flex flex-wrap gap-6">
+          <a href="#contact" class="btn-midnight px-12 py-5 rounded-full font-bold text-xs uppercase tracking-widest">
+            Optimiser mon système
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- INTERFACE NARRATIVE (Animation 3 Actes) -->
-    <section id="concept" class="py-24 bg-soft-slate border-y border-slate-200 overflow-hidden">
-        <div class="section-container">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                
-                <!-- Texte Narratif (Gauche) -->
-                <div class="lg:col-span-4 space-y-12 py-10">
-                    <div id="text-1" class="opacity-20 transition-all duration-700">
-                        <span class="text-[10px] font-black uppercase tracking-[0.4em] text-red-500 mb-4 block">Acte 1 — Avant</span>
-                        <h3 class="text-3xl font-black mb-4 tracking-tighter">Outil ≠ Décision</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed font-medium">Pipeline surchargé, étapes floues, aucune priorité claire. On travaille dur, mais on navigue à vue.</p>
-                    </div>
-                    
-                    <div id="text-2" class="opacity-20 transition-all duration-700">
-                        <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-4 block">Acte 2 — Impact</span>
-                        <h3 class="text-3xl font-black mb-4 tracking-tighter">Structuration RevOps</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed font-medium">L'interface se transforme : centralisation des signaux, règles de qualification et enrichissement IA.</p>
-                    </div>
+  <!-- INTERFACE NARRATIVE (Animation 3 Actes) -->
+  <section id="concept" class="py-24 bg-[#F8FAFC] border-y border-slate-200 overflow-hidden">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
-                    <div id="text-3" class="opacity-20 transition-all duration-700">
-                        <span class="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-4 block">Acte 3 — Après</span>
-                        <h3 class="text-3xl font-black mb-4 tracking-tighter">Focus & Closing</h3>
-                        <p class="text-sm text-slate-500 leading-relaxed font-medium">Le commercial voit les 3 opportunités prioritaires. On ne vend pas plus, on vend mieux.</p>
-                    </div>
-                </div>
+        <!-- Texte Narratif (Gauche) -->
+        <div class="lg:col-span-4 space-y-12 py-10">
+          <div id="text-1" class="opacity-20 transition-all duration-700">
+            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-red-500 mb-4 block">Acte 1 — Avant</span>
+            <h3 class="text-3xl font-black mb-4 tracking-tighter">Outil ≠ Décision</h3>
+            <p class="text-sm text-slate-500 leading-relaxed font-medium">
+              Pipeline gonflé, étapes floues, aucune priorité claire. On travaille dur, mais on navigue à vue.
+            </p>
+          </div>
 
-                <!-- Interface CRM (Droite) -->
-                <div class="lg:col-span-8 sticky top-32">
-                    <div class="crm-window shadow-2xl">
-                        <div class="crm-header">
-                            <div class="dot bg-red-400/50"></div><div class="dot bg-amber-400/50"></div><div class="dot bg-emerald-400/50"></div>
-                            <div class="ml-4 h-4 w-40 bg-slate-200/50 rounded-full"></div>
-                        </div>
-                        
-                        <div class="flex-1 flex overflow-hidden bg-white">
-                            <!-- Pipeline -->
-                            <div class="pipeline-stage">
-                                <div id="stage-1-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">Prospects</div>
-                                <div id="deals-col-1" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
-                            </div>
-                            <div class="pipeline-stage">
-                                <div id="stage-2-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">En cours</div>
-                                <div id="deals-col-2" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
-                            </div>
-                            <div class="pipeline-stage">
-                                <div id="stage-3-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">Fermeture</div>
-                                <div id="deals-col-3" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
-                            </div>
+          <div id="text-2" class="opacity-20 transition-all duration-700">
+            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-4 block">Acte 2 — Impact</span>
+            <h3 class="text-3xl font-black mb-4 tracking-tighter">Structuration RevOps</h3>
+            <p class="text-sm text-slate-500 leading-relaxed font-medium">
+              Le système se met en place : règles de qualification, centralisation des signaux, enrichissement et contextualisation.
+            </p>
+          </div>
 
-                            <!-- Panneau Latéral -->
-                            <div id="side-panel" class="w-72 border-l border-slate-100 p-8 bg-slate-50/30">
-                                <div class="text-[10px] font-black text-slate-400 uppercase mb-8 tracking-widest">Fiche Contact</div>
-                                <div id="contact-card-content" class="space-y-6">
-                                    <div class="flex gap-4 items-center">
-                                        <div id="contact-avatar" class="h-12 w-12 bg-slate-200 rounded-full flex-shrink-0"></div>
-                                        <div class="space-y-2 w-full">
-                                            <div class="h-3 w-3/4 bg-slate-200 rounded"></div>
-                                            <div class="h-2 w-1/2 bg-slate-200 rounded"></div>
-                                        </div>
-                                    </div>
-                                    <hr class="border-slate-200">
-                                    <div class="space-y-3">
-                                        <div class="h-2 w-full bg-slate-100 rounded"></div>
-                                        <div class="h-2 w-5/6 bg-slate-100 rounded"></div>
-                                        <div id="ia-badge-container"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Barre de statut -->
-                        <div class="h-14 bg-white border-t border-slate-100 px-8 flex items-center justify-between">
-                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter" id="status-bar">Diagnostic...</div>
-                            <div class="flex items-center gap-4">
-                                <div class="text-[9px] font-black text-slate-300 uppercase tracking-widest">Revenue Forecast</div>
-                                <div id="revenue-gauge" class="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
-                                    <div id="revenue-fill" class="h-full bg-[#172554] w-0 transition-all duration-1000"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div id="text-3" class="opacity-20 transition-all duration-700">
+            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-4 block">Acte 3 — Après</span>
+            <h3 class="text-3xl font-black mb-4 tracking-tighter">Focus & Closing</h3>
+            <p class="text-sm text-slate-500 leading-relaxed font-medium">
+              Le commercial sait quoi faire maintenant : 3 priorités, next steps clairs, closing mieux piloté. On vend mieux.
+            </p>
+          </div>
         </div>
-    </section>
 
-    <!-- Section Parcours -->
-    <section id="about" class="py-36">
-        <div class="section-container">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-                <div class="relative">
-                    <div class="aspect-[4/5] bg-slate-50 border border-slate-200 rounded-2xl p-10 flex flex-col justify-between">
-                        <div class="space-y-8">
-                            <div class="text-[10px] font-black text-[#172554] uppercase tracking-[0.4em]">Expertise MarTech</div>
-                            <h3 class="text-4xl font-extrabold tracking-tighter">Stack Maîtrisée</h3>
-                            <div class="grid grid-cols-2 gap-6">
-                                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
-                                    <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Automation</div>
-                                    <div class="font-bold text-sm">Make.com / Zapier</div>
-                                </div>
-                                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
-                                    <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">CRM</div>
-                                    <div class="font-bold text-sm">Salesforce / HubSpot</div>
-                                </div>
-                                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
-                                    <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Data</div>
-                                    <div class="font-bold text-sm">SQL / APIs / MySQL</div>
-                                </div>
-                                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
-                                    <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">SalesTech</div>
-                                    <div class="font-bold text-sm">Sales Enablement</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pt-10 border-t border-slate-100">
-                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Parcours Clé</div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xs">S</div>
-                                <div>
-                                    <div class="font-bold text-sm">Sarbacane Software</div>
-                                    <div class="text-xs text-slate-400">Chef de projet Marketing Acquisition & Sales Ops</div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Interface CRM (Droite) -->
+        <div class="lg:col-span-8 sticky top-32">
+          <div class="crm-window shadow-2xl">
+            <div class="crm-header">
+              <div class="dot bg-red-400/50"></div><div class="dot bg-amber-400/50"></div><div class="dot bg-emerald-400/50"></div>
+              <div class="ml-4 h-4 w-40 bg-slate-200/50 rounded-full"></div>
+            </div>
+
+            <div class="flex-1 flex overflow-hidden bg-white">
+              <!-- Pipeline -->
+              <div class="pipeline-stage">
+                <div id="stage-1-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">Prospects</div>
+                <div id="deals-col-1" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
+              </div>
+              <div class="pipeline-stage">
+                <div id="stage-2-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">En cours</div>
+                <div id="deals-col-2" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
+              </div>
+              <div class="pipeline-stage">
+                <div id="stage-3-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">Fermeture</div>
+                <div id="deals-col-3" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
+              </div>
+
+              <!-- Panneau Latéral -->
+              <div id="side-panel" class="w-72 border-l border-slate-100 p-8 bg-slate-50/30">
+                <div class="text-[10px] font-black text-slate-400 uppercase mb-8 tracking-widest">Fiche Contact</div>
+
+                <div id="contact-card-content" class="space-y-6">
+                  <div class="flex gap-4 items-center">
+                    <div id="contact-avatar" class="h-12 w-12 bg-slate-200 rounded-full flex-shrink-0"></div>
+                    <div class="leading-tight">
+                      <div id="contact-name" class="font-black text-sm text-slate-300">—</div>
+                      <div id="contact-company" class="text-[11px] font-bold text-slate-400">—</div>
                     </div>
+                  </div>
+
+                  <hr class="border-slate-200">
+
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between text-[10px]">
+                      <span class="font-bold text-slate-400 uppercase tracking-widest">Source</span>
+                      <span id="field-source" class="font-black text-slate-300">—</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px]">
+                      <span class="font-bold text-slate-400 uppercase tracking-widest">Fit</span>
+                      <span id="field-fit" class="font-black text-slate-300">—</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px]">
+                      <span class="font-bold text-slate-400 uppercase tracking-widest">Intent</span>
+                      <span id="field-intent" class="font-black text-slate-300">—</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px]">
+                      <span class="font-bold text-slate-400 uppercase tracking-widest">Next action</span>
+                      <span id="field-next" class="font-black text-slate-300">—</span>
+                    </div>
+                  </div>
+
+                  <div class="mt-2 grid grid-cols-3 gap-2">
+                    <div id="toggle-rules" class="toggle-pill">Rules</div>
+                    <div id="toggle-enrich" class="toggle-pill">Enrich</div>
+                    <div id="toggle-ai" class="toggle-pill">AI</div>
+                  </div>
+
+                  <div id="signals-box" class="signals-box mt-4"></div>
+                  <div id="ia-badge-container"></div>
                 </div>
+
+              </div>
+            </div>
+
+            <!-- Barre de statut -->
+            <div class="h-14 bg-white border-t border-slate-100 px-8 flex items-center justify-between">
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter" id="status-bar">Diagnostic...</div>
+              <div class="flex items-center gap-4">
+                <div class="text-[9px] font-black text-slate-300 uppercase tracking-widest">Revenue Forecast</div>
+                <div id="revenue-gauge" class="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div id="revenue-fill" class="h-full bg-[#172554] w-0 transition-all duration-1000"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scrubber -->
+          <div class="mt-6 flex items-center justify-between gap-4">
+            <div class="flex gap-2 rounded-full border border-slate-200 bg-white p-1 shadow-sm">
+              <button data-act="0" class="act-btn px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-500">Avant</button>
+              <button data-act="1" class="act-btn px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-500">Impact</button>
+              <button data-act="2" class="act-btn px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-500">Après</button>
+            </div>
+            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              Démo interactive — cliquez pour changer d’état
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Parcours -->
+  <section id="about" class="py-36">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+        <div class="relative">
+          <div class="aspect-[4/5] bg-slate-50 border border-slate-200 rounded-2xl p-10 flex flex-col justify-between">
+            <div class="space-y-8">
+              <div class="text-[10px] font-black text-[#172554] uppercase tracking-[0.4em]">Expertise MarTech</div>
+              <h3 class="text-4xl font-extrabold tracking-tighter">Stack maîtrisée</h3>
+              <div class="grid grid-cols-2 gap-6">
+                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                  <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Automation</div>
+                  <div class="font-bold text-sm">Make.com / Zapier</div>
+                </div>
+                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                  <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">CRM</div>
+                  <div class="font-bold text-sm">Salesforce / HubSpot</div>
+                </div>
+                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                  <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Data</div>
+                  <div class="font-bold text-sm">SQL / APIs / MySQL</div>
+                </div>
+                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                  <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">SalesTech</div>
+                  <div class="font-bold text-sm">Sales Enablement</div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-10 border-t border-slate-100">
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Parcours clé</div>
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xs">S</div>
                 <div>
-                    <h2 class="text-5xl font-extrabold tracking-tighter text-[#172554] mb-10 leading-tight">L'architecte de votre croissance.</h2>
-                    <p class="text-slate-500 text-lg leading-relaxed mb-8">
-                        Après avoir piloté l'acquisition et les Sales Ops pour des leaders comme **Sarbacane**, j'accompagne aujourd'hui les entreprises B2B dans la construction de leurs systèmes de revenus.
-                    </p>
-                    <p class="text-slate-500 text-lg leading-relaxed mb-12">
-                        Mon approche combine la rigueur de l'ingénierie logicielle (APIs, SQL, No-Code) et l'agilité du Growth Marketing pour créer des pipelines fluides et prédictibles.
-                    </p>
-                    <div class="flex flex-col gap-6">
-                        <div class="flex items-center gap-6 p-6 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors">
-                            <i data-lucide="award" class="w-8 h-8 text-[#172554]"></i>
-                            <div>
-                                <div class="font-bold">Master II Stratégie Web Marketing</div>
-                                <div class="text-sm text-slate-400">Expert en pilotage de performance digitale.</div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="font-bold text-sm">Sarbacane Software</div>
+                  <div class="text-xs text-slate-400">Marketing Acquisition & Sales Ops</div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact CTA -->
-    <section id="contact" class="py-32 bg-[#172554] text-white">
-        <div class="section-container text-center max-w-3xl">
-            <h2 class="text-6xl font-extrabold tracking-tighter mb-10">On vend mieux.</h2>
-            <p class="text-blue-200 text-xl mb-16 font-medium">Prêt à transformer votre CRM en un actif stratégique ? Discutons de vos enjeux RevOps.</p>
-            <div class="flex flex-wrap justify-center gap-8">
-                <a href="mailto:vanderosieren.simon@gmail.com" class="bg-white text-[#172554] px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-50 transition-all">
-                    Envoyer un email
-                </a>
-                <a href="https://linkedin.com/in/simon-vanderosieren" target="_blank" class="border border-white/20 px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
-                    Me contacter sur LinkedIn
-                </a>
+        <div>
+          <h2 class="text-5xl font-extrabold tracking-tighter text-[#172554] mb-10 leading-tight">
+            Un profil transverse : Sales → Ops → MarTech → RevOps.
+          </h2>
+
+          <p class="text-slate-500 text-lg leading-relaxed mb-8">
+            J’ai construit et opéré des systèmes d’acquisition, d’automation et de Sales Ops dans des environnements B2B (Sarbacane, Sarbacane Chat, User.com).
+            Aujourd’hui, j’aide les équipes à structurer leur moteur de revenu : funnel, CRM, data, automatisations et process.
+          </p>
+
+          <p class="text-slate-500 text-lg leading-relaxed mb-12">
+            Je suis à l’aise autant sur la stratégie (stages, scoring, SLA, reporting) que sur l’exécution (Make, API, enrichissement, séquences, CRM).
+            Objectif : décisions plus rapides, pipeline plus propre, closing plus stable.
+          </p>
+
+          <div class="flex flex-col gap-6">
+            <div class="flex items-center gap-6 p-6 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors">
+              <i data-lucide="award" class="w-8 h-8 text-[#172554]"></i>
+              <div>
+                <div class="font-bold">Master II Stratégie Web Marketing</div>
+                <div class="text-sm text-slate-400">Expertise performance digitale & systèmes.</div>
+              </div>
             </div>
+          </div>
+
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <footer class="py-16 border-t border-slate-100">
-        <div class="section-container flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
-            <div>© 2024 Simon Vande Rosieren</div>
-            <div class="flex gap-10">
-                <a href="#" class="hover:text-[#172554]">Mentions Légales</a>
-                <a href="#" class="hover:text-[#172554]">RevOps Framework</a>
-            </div>
-        </div>
-    </footer>
+  <!-- Contact CTA -->
+  <section id="contact" class="py-32 bg-[#172554] text-white">
+    <div class="section-container text-center max-w-3xl">
+      <h2 class="text-6xl font-extrabold tracking-tighter mb-10">On met votre pipeline sous contrôle ?</h2>
+      <p class="text-blue-200 text-xl mb-16 font-medium">
+        En 30 minutes, on identifie où ça fuit (funnel, CRM, data, process) et les 3 priorités qui feront monter la conversion.
+      </p>
+      <div class="flex flex-wrap justify-center gap-8">
+        <a href="mailto:vanderosieren.simon@gmail.com" class="bg-white text-[#172554] px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-50 transition-all">
+          Envoyer un email
+        </a>
+        <a href="https://linkedin.com/in/simon-vanderosieren" target="_blank" class="border border-white/20 px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
+          Me contacter sur LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Gestion du chargement
-        window.onload = function() {
-            document.getElementById('loader').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('main-body').classList.remove('opacity-0');
-            }, 500);
+  <footer class="py-16 border-t border-slate-100">
+    <div class="section-container flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
+      <div>© 2024 Simon Vande Rosieren</div>
+      <div class="flex gap-10">
+        <a href="#" class="hover:text-[#172554]">Mentions légales</a>
+        <a href="#" class="hover:text-[#172554]">RevOps Framework</a>
+      </div>
+    </div>
+  </footer>
 
-            // Initialisation des icônes
-            lucide.createIcons();
+  <script>
+    window.onload = function () {
+      // Loader
+      document.getElementById('loader').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('main-body').classList.remove('opacity-0');
+      }, 500);
 
-            // --- MOTEUR D'ANIMATION NARRATIVE ---
-            const dealsCol1 = document.getElementById('deals-col-1');
-            const dealsCol2 = document.getElementById('deals-col-2');
-            const dealsCol3 = document.getElementById('deals-col-3');
-            const statusBar = document.getElementById('status-bar');
-            const revenueFill = document.getElementById('revenue-fill');
-            const stage1Title = document.getElementById('stage-1-title');
-            const stage2Title = document.getElementById('stage-2-title');
+      // Icons
+      lucide.createIcons();
 
-            const dealNames = ["Acme Corp", "Globex", "Initech", "Umbrella", "Cyberdyne", "Soylent", "Stark Ind.", "Wayne Ent.", "Tyrell Corp", "Oscorp"];
+      // Elements
+      const dealsCol1 = document.getElementById('deals-col-1');
+      const dealsCol2 = document.getElementById('deals-col-2');
+      const dealsCol3 = document.getElementById('deals-col-3');
+      const statusBar = document.getElementById('status-bar');
+      const revenueFill = document.getElementById('revenue-fill');
+      const stage1Title = document.getElementById('stage-1-title');
+      const stage2Title = document.getElementById('stage-2-title');
 
-            function clearPipeline() {
-                dealsCol1.innerHTML = '';
-                dealsCol2.innerHTML = '';
-                dealsCol3.innerHTML = '';
-            }
+      const dealNames = ["Acme Corp", "Globex", "Initech", "Umbrella", "Cyberdyne", "Soylent", "Stark Ind.", "Wayne Ent.", "Tyrell Corp", "Oscorp"];
 
-            function createDeal(name, status = '') {
-                const deal = document.createElement('div');
-                deal.className = 'deal-card opacity-0 translate-y-2';
-                let badge = status ? `<div class="status-badge ${status.bg} ${status.text} mt-2">${status.label}</div>` : '';
-                deal.innerHTML = `
-                    <div class="font-black text-[#172554]">${name}</div>
-                    <div class="w-2/3 h-1 bg-slate-50 rounded mt-2"></div>
-                    ${badge}
-                `;
-                gsap.to(deal, { opacity: 1, y: 0, duration: 0.5 });
-                return deal;
-            }
+      function clearPipeline() {
+        dealsCol1.innerHTML = '';
+        dealsCol2.innerHTML = '';
+        dealsCol3.innerHTML = '';
+      }
 
-            function ACTE_1() {
-                clearPipeline();
-                for(let i=0; i<8; i++) dealsCol1.appendChild(createDeal(dealNames[i]));
-                for(let i=0; i<6; i++) dealsCol2.appendChild(createDeal(dealNames[i+2]));
-                
-                stage1Title.innerText = "PROSPECTS (BRUT)";
-                stage2Title.innerText = "EN COURS (?)";
-                statusBar.innerText = "ALERTE : NAVIGUE À VUE / KPI CONTRADICTOIRES";
-                statusBar.className = "text-[10px] font-black text-red-500 uppercase tracking-tighter";
-                revenueFill.style.width = "15%";
-                document.getElementById('contact-avatar').className = "h-12 w-12 bg-slate-200 rounded-full flex-shrink-0";
-                document.getElementById('ia-badge-container').innerHTML = '';
-            }
+      function createDeal(name, status = null) {
+        const deal = document.createElement('div');
+        deal.className = 'deal-card opacity-0 translate-y-2';
+        const badge = status ? `<div class="status-badge ${status.bg} ${status.text} mt-2">${status.label}</div>` : '';
+        deal.innerHTML = `
+          <div class="font-black text-[#172554]">${name}</div>
+          <div class="w-2/3 h-1 bg-slate-50 rounded mt-2"></div>
+          ${badge}
+        `;
+        gsap.to(deal, { opacity: 1, y: 0, duration: 0.5 });
+        return deal;
+      }
 
-            function ACTE_2() {
-                clearPipeline();
-                ["Globex", "Stark Ind", "Initech"].forEach(name => dealsCol1.appendChild(createDeal(name, {label: 'SIGNAL DÉTECTÉ', bg: 'bg-blue-100', text: 'text-blue-700'})));
-                ["Acme Corp", "Wayne Ent"].forEach(name => dealsCol2.appendChild(createDeal(name, {label: 'VÉRIFIÉ', bg: 'bg-indigo-100', text: 'text-indigo-700'})));
+      function setBeforeCard() {
+        document.getElementById('contact-avatar').className = "h-12 w-12 bg-slate-200 rounded-full flex-shrink-0";
+        document.getElementById('contact-avatar').innerText = "";
+        document.getElementById('contact-name').innerText = "Prospect inconnu";
+        document.getElementById('contact-company').innerText = "Entreprise : —";
+        document.getElementById('field-source').innerText = "—";
+        document.getElementById('field-fit').innerText = "—";
+        document.getElementById('field-intent').innerText = "—";
+        document.getElementById('field-next').innerText = "—";
+        ["toggle-rules","toggle-enrich","toggle-ai"].forEach(id => document.getElementById(id).classList.remove('on'));
+        document.getElementById('signals-box').innerHTML =
+          "<strong>Symptômes :</strong><br>Pipeline gonflé • étapes floues • peu de contexte • priorités inexistantes.";
+        document.getElementById('ia-badge-container').innerHTML = '';
+      }
 
-                stage1Title.innerText = "MQL QUALIFIÉS";
-                stage2Title.innerText = "SQL VÉRIFIÉS";
-                statusBar.innerText = "SYSTÈME REVOPS : DÉCISION AIDÉE PAR LA DATA";
-                statusBar.className = "text-[10px] font-black text-blue-600 uppercase tracking-tighter";
-                revenueFill.style.width = "45%";
-                document.getElementById('contact-avatar').className = "h-12 w-12 bg-[#172554] rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-xs";
-                document.getElementById('contact-avatar').innerText = "JD";
-                document.getElementById('ia-badge-container').innerHTML = `
-                    <div class="p-4 bg-blue-50 border border-blue-100 rounded-xl mt-4 opacity-0 scale-95" id="ia-box">
-                        <div class="text-[9px] font-black text-blue-800 uppercase mb-2">Intelligence IA</div>
-                        <div class="text-[10px] text-blue-900 font-semibold leading-snug">Score : 94/100. Compte prioritaire. <br>Action : Rappel contextuel via LinkedIn.</div>
-                    </div>
-                `;
-                gsap.to("#ia-box", { opacity: 1, scale: 1, duration: 0.5 });
-            }
+      function setImpactCard() {
+        document.getElementById('contact-avatar').className = "h-12 w-12 bg-[#172554] rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-xs";
+        document.getElementById('contact-avatar').innerText = "JD";
+        document.getElementById('contact-name').innerText = "Jean Dupont";
+        document.getElementById('contact-company').innerText = "Globex — Head of Ops";
+        document.getElementById('field-source').innerText = "Outbound + intent";
+        document.getElementById('field-fit').innerText = "High";
+        document.getElementById('field-intent').innerText = "Pricing / ROI";
+        document.getElementById('field-next').innerText = "Call + contexte";
+        document.getElementById('toggle-rules').classList.add('on');
+        document.getElementById('toggle-enrich').classList.add('on');
+        document.getElementById('toggle-ai').classList.add('on');
+        document.getElementById('signals-box').innerHTML =
+          "<strong>Signals :</strong><br>Tech stack détecté • taille + secteur • historique • score priorité.<br><strong>Recommandation :</strong> relance contextualisée.";
 
-            function ACTE_3() {
-                clearPipeline();
-                dealsCol2.appendChild(createDeal("Stark Ind.", {label: 'PRIORITÉ HAUTE', bg: 'bg-emerald-100', text: 'text-emerald-700'}));
-                const wonDeal = createDeal("Globex - SIGNÉ", {label: 'WON', bg: 'bg-emerald-500', text: 'text-white'});
-                wonDeal.className += " border-emerald-500 shadow-lg shadow-emerald-100";
-                dealsCol3.appendChild(wonDeal);
+        document.getElementById('ia-badge-container').innerHTML = `
+          <div class="p-4 bg-blue-50 border border-blue-100 rounded-xl mt-4 opacity-0 scale-95" id="ia-box">
+            <div class="text-[9px] font-black text-blue-800 uppercase mb-2">Intelligence IA</div>
+            <div class="text-[10px] text-blue-900 font-semibold leading-snug">Score : 94/100. Compte prioritaire. <br>Action : relance contextualisée.</div>
+          </div>
+        `;
+        gsap.to("#ia-box", { opacity: 1, scale: 1, duration: 0.5 });
+      }
 
-                statusBar.innerText = "STABILITÉ : REVENU PRÉDICTIBLE & FOCUS CLOSING";
-                statusBar.className = "text-[10px] font-black text-emerald-600 uppercase tracking-tighter";
-                revenueFill.style.width = "95%";
-                document.getElementById('ia-badge-container').innerHTML = `
-                    <button class="w-full py-4 bg-[#172554] text-white text-[10px] font-black rounded-xl uppercase tracking-widest mt-4 shadow-xl shadow-blue-900/20 hover:scale-105 transition-transform opacity-0" id="cta-onboard">
-                        Lancer Onboarding
-                    </button>
-                `;
-                gsap.to("#cta-onboard", { opacity: 1, duration: 0.5 });
-            }
+      function setAfterCard() {
+        document.getElementById('contact-name').innerText = "Compte prioritaire";
+        document.getElementById('contact-company').innerText = "Globex — Deal en closing";
+        document.getElementById('field-source').innerText = "Qualified";
+        document.getElementById('field-fit').innerText = "High";
+        document.getElementById('field-intent').innerText = "Urgent";
+        document.getElementById('field-next').innerText = "Demo → closing";
+        document.getElementById('toggle-rules').classList.add('on');
+        document.getElementById('toggle-enrich').classList.add('on');
+        document.getElementById('toggle-ai').classList.add('on');
+        document.getElementById('signals-box').innerHTML =
+          "<strong>Résultat :</strong><br>Pipeline nettoyé • focus sur 3 deals • next steps clairs • closing accéléré.";
 
-            // --- GESTION DU SCROLL (GSAP) ---
-            gsap.registerPlugin(ScrollTrigger);
-            const acts = [ACTE_1, ACTE_2, ACTE_3];
-            let lastAct = -1;
+        document.getElementById('ia-badge-container').innerHTML = `
+          <button class="w-full py-4 bg-[#172554] text-white text-[10px] font-black rounded-xl uppercase tracking-widest mt-4 shadow-xl shadow-blue-900/20 hover:scale-105 transition-transform opacity-0" id="cta-onboard">
+            Lancer Onboarding
+          </button>
+        `;
+        gsap.to("#cta-onboard", { opacity: 1, duration: 0.5 });
+      }
 
-            ScrollTrigger.create({
-                trigger: "#concept",
-                start: "top 40%",
-                end: "bottom center",
-                onUpdate: (self) => {
-                    const progress = self.progress;
-                    let currentAct = 0;
-                    if(progress > 0.35) currentAct = 1;
-                    if(progress > 0.75) currentAct = 2;
+      function ACTE_1() {
+        clearPipeline();
+        for (let i = 0; i < 8; i++) dealsCol1.appendChild(createDeal(dealNames[i]));
+        for (let i = 0; i < 6; i++) dealsCol2.appendChild(createDeal(dealNames[i + 2]));
 
-                    if (currentAct !== lastAct) {
-                        acts[currentAct]();
-                        lastAct = currentAct;
-                    }
-                    
-                    [1,2,3].forEach(i => {
-                        const el = document.getElementById(`text-${i}`);
-                        if(i === currentAct + 1) {
-                            el.classList.add('step-active-text');
-                            el.style.opacity = "1";
-                        } else {
-                            el.classList.remove('step-active-text');
-                            el.style.opacity = "0.2";
-                        }
-                    });
-                }
-            });
+        stage1Title.innerText = "PROSPECTS (BRUT)";
+        stage2Title.innerText = "EN COURS (?)";
+        statusBar.innerText = "ALERTE : NAVIGUE À VUE / KPI CONTRADICTOIRES";
+        statusBar.className = "text-[10px] font-black text-red-500 uppercase tracking-tighter";
+        revenueFill.style.width = "15%";
 
-            ACTE_1();
-        };
-    </script>
+        setBeforeCard();
+      }
+
+      function ACTE_2() {
+        clearPipeline();
+        ["Globex", "Stark Ind.", "Initech"].forEach(name =>
+          dealsCol1.appendChild(createDeal(name, { label: 'SIGNAL DÉTECTÉ', bg: 'bg-blue-100', text: 'text-blue-700' }))
+        );
+        ["Acme Corp", "Wayne Ent."].forEach(name =>
+          dealsCol2.appendChild(createDeal(name, { label: 'VÉRIFIÉ', bg: 'bg-indigo-100', text: 'text-indigo-700' }))
+        );
+
+        stage1Title.innerText = "MQL QUALIFIÉS";
+        stage2Title.innerText = "SQL VÉRIFIÉS";
+        statusBar.innerText = "SYSTÈME REVOPS : DÉCISION AIDÉE PAR LA DATA";
+        statusBar.className = "text-[10px] font-black text-blue-600 uppercase tracking-tighter";
+        revenueFill.style.width = "45%";
+
+        setImpactCard();
+      }
+
+      function ACTE_3() {
+        clearPipeline();
+        dealsCol2.appendChild(createDeal("Stark Ind.", { label: 'PRIORITÉ HAUTE', bg: 'bg-emerald-100', text: 'text-emerald-700' }));
+
+        const wonDeal = createDeal("Globex — SIGNÉ", { label: 'WON', bg: 'bg-emerald-500', text: 'text-white' });
+        wonDeal.className += " border-emerald-500 shadow-lg shadow-emerald-100";
+        dealsCol3.appendChild(wonDeal);
+
+        statusBar.innerText = "STABILITÉ : PIPELINE PLUS PROPRE & FOCUS CLOSING";
+        statusBar.className = "text-[10px] font-black text-emerald-600 uppercase tracking-tighter";
+        revenueFill.style.width = "95%";
+
+        setAfterCard();
+      }
+
+      // Act control
+      gsap.registerPlugin(ScrollTrigger);
+      const acts = [ACTE_1, ACTE_2, ACTE_3];
+      let lastAct = -1;
+
+      function setAct(index) {
+        if (index === lastAct) return;
+        acts[index]();
+        lastAct = index;
+
+        // Text highlight
+        [1,2,3].forEach(i => {
+          const el = document.getElementById(`text-${i}`);
+          if (i === index + 1) {
+            el.classList.add('step-active-text');
+            el.style.opacity = "1";
+          } else {
+            el.classList.remove('step-active-text');
+            el.style.opacity = "0.2";
+          }
+        });
+
+        // Scrubber
+        document.querySelectorAll('.act-btn').forEach(btn => {
+          btn.classList.toggle('active', Number(btn.dataset.act) === index);
+        });
+      }
+
+      ScrollTrigger.create({
+        trigger: "#concept",
+        start: "top 40%",
+        end: "bottom center",
+        onUpdate: (self) => {
+          const p = self.progress;
+          let currentAct = 0;
+          if (p > 0.35) currentAct = 1;
+          if (p > 0.75) currentAct = 2;
+          setAct(currentAct);
+        }
+      });
+
+      // Click scrubber
+      document.querySelectorAll('.act-btn').forEach(btn => {
+        btn.addEventListener('click', () => setAct(Number(btn.dataset.act)));
+      });
+
+      // Initial
+      setAct(0);
+    };
+  </script>
 </body>
 </html>
+
