@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simon Vande Rosieren | RevOps Systems Consultant</title>
 
   <!-- External scripts -->
@@ -118,7 +118,7 @@
       transition: opacity 0.5s ease;
     }
 
-    /* Scrubber + toggles + signals (V2) */
+    /* Scrubber + toggles + signals */
     .act-btn.active {
       background: var(--midnight-navy);
       color: white;
@@ -172,14 +172,14 @@
       </div>
       <div class="hidden md:flex items-center gap-10">
         <a href="#concept" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Concept</a>
-        <a href="#about" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Parcours</a>
-        <a href="#contact" class="btn-midnight px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest">Consultation</a>
+        <a href="#about" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Stack</a>
+        <a href="#contact" class="btn-midnight px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest">Projet</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="pt-52 pb-32">
+  <section class="pt-52 pb-28">
     <div class="section-container">
       <div class="max-w-4xl">
         <div class="inline-flex items-center gap-3 mb-10 px-4 py-1.5 border border-[#172554]/10 text-slate-500 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase bg-slate-50">
@@ -187,17 +187,18 @@
           RevOps Systems Consultant
         </div>
 
-        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-12 text-[#172554]">
-          Je transforme votre CRM <br>et votre funnel en machine à closer.
+        <!-- HERO: plus court + verbe d'action -->
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.92] mb-10 text-[#172554]">
+          Je débloque <br>votre closing.
         </h1>
 
-        <p class="text-xl text-slate-500 mb-14 max-w-2xl leading-relaxed font-medium">
-          Quand le pipeline existe mais ne convertit pas : je structure le système (stages, règles, data, automatisations) pour que Marketing & Sales travaillent sur les bons signaux — et que le closing devienne plus fiable.
+        <p class="text-xl text-slate-500 mb-12 max-w-2xl leading-relaxed font-medium">
+          Funnel + CRM + data + automatisations : j’élimine les frictions et j’aligne Marketing & Sales sur les bons signaux pour rendre votre pipeline plus propre et plus performant.
         </p>
 
         <div class="flex flex-wrap gap-6">
           <a href="#contact" class="btn-midnight px-12 py-5 rounded-full font-bold text-xs uppercase tracking-widest">
-            Optimiser mon système
+            Parler de votre projet
           </a>
         </div>
       </div>
@@ -223,7 +224,7 @@
             <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-4 block">Acte 2 — Impact</span>
             <h3 class="text-3xl font-black mb-4 tracking-tighter">Structuration RevOps</h3>
             <p class="text-sm text-slate-500 leading-relaxed font-medium">
-              Le système se met en place : règles de qualification, centralisation des signaux, enrichissement et contextualisation.
+              Règles de qualification, centralisation des signaux, enrichissement & contextualisation : le CRM aide enfin à décider.
             </p>
           </div>
 
@@ -231,13 +232,14 @@
             <span class="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-4 block">Acte 3 — Après</span>
             <h3 class="text-3xl font-black mb-4 tracking-tighter">Focus & Closing</h3>
             <p class="text-sm text-slate-500 leading-relaxed font-medium">
-              Le commercial sait quoi faire maintenant : 3 priorités, next steps clairs, closing mieux piloté. On vend mieux.
+              3 priorités, next steps clairs, pipeline nettoyé : on vend mieux, avec moins d’énergie perdue.
             </p>
           </div>
         </div>
 
         <!-- Interface CRM (Droite) -->
-        <div class="lg:col-span-8 sticky top-32">
+        <!-- IMPORTANT: wrapper pour le pin (fix scroll acte 3) -->
+        <div id="crm-pin" class="lg:col-span-8">
           <div class="crm-window shadow-2xl">
             <div class="crm-header">
               <div class="dot bg-red-400/50"></div><div class="dot bg-amber-400/50"></div><div class="dot bg-emerald-400/50"></div>
@@ -326,78 +328,93 @@
               <button data-act="2" class="act-btn px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-500">Après</button>
             </div>
             <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-              Démo interactive — cliquez pour changer d’état
+              Démo — cliquez / scrollez
             </div>
           </div>
-
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Section Parcours -->
-  <section id="about" class="py-36">
+  <!-- Section Stack / About (renforcée) -->
+  <section id="about" class="py-32">
     <div class="section-container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+
+        <!-- Stack card -->
         <div class="relative">
-          <div class="aspect-[4/5] bg-slate-50 border border-slate-200 rounded-2xl p-10 flex flex-col justify-between">
-            <div class="space-y-8">
-              <div class="text-[10px] font-black text-[#172554] uppercase tracking-[0.4em]">Expertise MarTech</div>
-              <h3 class="text-4xl font-extrabold tracking-tighter">Stack maîtrisée</h3>
-              <div class="grid grid-cols-2 gap-6">
-                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
-                  <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Automation</div>
-                  <div class="font-bold text-sm">Make.com / Zapier</div>
-                </div>
-                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
-                  <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">CRM</div>
-                  <div class="font-bold text-sm">Salesforce / HubSpot</div>
-                </div>
-                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
-                  <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Data</div>
-                  <div class="font-bold text-sm">SQL / APIs / MySQL</div>
-                </div>
-                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
-                  <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">SalesTech</div>
-                  <div class="font-bold text-sm">Sales Enablement</div>
-                </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-10">
+            <div class="text-[10px] font-black text-[#172554] uppercase tracking-[0.4em]">Stack</div>
+            <h3 class="text-3xl font-extrabold tracking-tighter mt-3 mb-8">RevOps & Automation</h3>
+
+            <div class="grid grid-cols-2 gap-6">
+              <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Automation</div>
+                <div class="font-bold text-sm">Make.com / Zapier</div>
+              </div>
+              <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">CRM</div>
+                <div class="font-bold text-sm">HubSpot / Salesforce</div>
+              </div>
+              <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Data</div>
+                <div class="font-bold text-sm">APIs / SQL / Sync</div>
+              </div>
+              <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Outbound</div>
+                <div class="font-bold text-sm">Lemlist / Sales Nav</div>
               </div>
             </div>
-            <div class="pt-10 border-t border-slate-100">
-              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Parcours clé</div>
-              <div class="flex items-center gap-4">
-                <div class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xs">S</div>
-                <div>
-                  <div class="font-bold text-sm">Sarbacane Software</div>
-                  <div class="text-xs text-slate-400">Marketing Acquisition & Sales Ops</div>
-                </div>
+
+            <!-- Logos -->
+            <div class="mt-10">
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Outils</div>
+              <div class="grid grid-cols-3 sm:grid-cols-4 gap-5 items-center opacity-90">
+                <!-- Place tes logos ici (dans /assets/logos/) -->
+                <img class="h-6 w-auto" src="./assets/logos/hubspot.svg" alt="HubSpot" />
+                <img class="h-6 w-auto" src="./assets/logos/salesforce.svg" alt="Salesforce" />
+                <img class="h-6 w-auto" src="./assets/logos/make.svg" alt="Make" />
+                <img class="h-6 w-auto" src="./assets/logos/zapier.svg" alt="Zapier" />
+                <img class="h-6 w-auto" src="./assets/logos/lemlist.svg" alt="Lemlist" />
+                <img class="h-6 w-auto" src="./assets/logos/linkedin.svg" alt="LinkedIn Sales Navigator" />
+                <img class="h-6 w-auto" src="./assets/logos/dropcontact.svg" alt="Dropcontact" />
+                <img class="h-6 w-auto" src="./assets/logos/fullenrich.svg" alt="FullEnrich" />
+                <!-- Ajoute : reply, zapmail, user.com, sarbacane, etc. -->
+              </div>
+              <div class="text-[11px] text-slate-400 mt-5 leading-relaxed">
+                (Si tu n’as pas encore les logos, crée le dossier <span class="font-bold">/assets/logos/</span> et ajoute les fichiers en SVG/PNG.)
               </div>
             </div>
           </div>
         </div>
 
-        <div>
-          <h2 class="text-5xl font-extrabold tracking-tighter text-[#172554] mb-10 leading-tight">
-            Un profil transverse : Sales → Ops → MarTech → RevOps.
+        <!-- About text (titre moins “pitch”) -->
+        <div class="pt-2">
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#172554] mb-8 leading-tight">
+            10+ ans entre Sales, Ops et Revenue Systems.
           </h2>
 
-          <p class="text-slate-500 text-lg leading-relaxed mb-8">
+          <p class="text-slate-500 text-lg leading-relaxed mb-6">
             J’ai construit et opéré des systèmes d’acquisition, d’automation et de Sales Ops dans des environnements B2B (Sarbacane, Sarbacane Chat, User.com).
             Aujourd’hui, j’aide les équipes à structurer leur moteur de revenu : funnel, CRM, data, automatisations et process.
           </p>
 
-          <p class="text-slate-500 text-lg leading-relaxed mb-12">
+          <p class="text-slate-500 text-lg leading-relaxed mb-10">
             Je suis à l’aise autant sur la stratégie (stages, scoring, SLA, reporting) que sur l’exécution (Make, API, enrichissement, séquences, CRM).
             Objectif : décisions plus rapides, pipeline plus propre, closing plus stable.
           </p>
 
-          <div class="flex flex-col gap-6">
-            <div class="flex items-center gap-6 p-6 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors">
-              <i data-lucide="award" class="w-8 h-8 text-[#172554]"></i>
-              <div>
-                <div class="font-bold">Master II Stratégie Web Marketing</div>
-                <div class="text-sm text-slate-400">Expertise performance digitale & systèmes.</div>
-              </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-6 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors">
+              <div class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-2">Interventions</div>
+              <div class="font-bold">Audit RevOps → Build → Itérations</div>
+              <div class="text-sm text-slate-400 mt-1">Simple, robuste, maintenable.</div>
+            </div>
+            <div class="p-6 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors">
+              <div class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-2">Résultat</div>
+              <div class="font-bold">Pipeline plus propre, actions claires</div>
+              <div class="text-sm text-slate-400 mt-1">Moins de bruit, plus de deals.</div>
             </div>
           </div>
 
@@ -406,30 +423,56 @@
     </div>
   </section>
 
-  <!-- Contact CTA -->
-  <section id="contact" class="py-32 bg-[#172554] text-white">
-    <div class="section-container text-center max-w-3xl">
-      <h2 class="text-6xl font-extrabold tracking-tighter mb-10">On met votre pipeline sous contrôle ?</h2>
-      <p class="text-blue-200 text-xl mb-16 font-medium">
-        En 30 minutes, on identifie où ça fuit (funnel, CRM, data, process) et les 3 priorités qui feront monter la conversion.
-      </p>
-      <div class="flex flex-wrap justify-center gap-8">
-        <a href="mailto:vanderosieren.simon@gmail.com" class="bg-white text-[#172554] px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-50 transition-all">
-          Envoyer un email
-        </a>
-        <a href="https://linkedin.com/in/simon-vanderosieren" target="_blank" class="border border-white/20 px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
-          Me contacter sur LinkedIn
-        </a>
+  <!-- Contact: FORM -->
+  <section id="contact" class="py-28 bg-[#172554] text-white">
+    <div class="section-container max-w-4xl">
+      <div class="text-center">
+        <h2 class="text-5xl md:text-6xl font-extrabold tracking-tighter mb-8">Parlons de votre projet.</h2>
+        <p class="text-blue-200 text-xl font-medium max-w-2xl mx-auto">
+          Décris ton contexte (stack, volume, étapes du funnel, enjeu principal). Je reviens vers toi sous 48h ouvrées.
+        </p>
       </div>
+
+      <!-- Formspree: remplace XXXXX -->
+      <form
+        action="https://formspree.io/f/XXXXX"
+        method="POST"
+        class="mt-14 grid grid-cols-1 md:grid-cols-2 gap-4 text-left"
+      >
+        <input name="prenom" required placeholder="Prénom"
+          class="w-full rounded-xl px-5 py-4 text-[#172554] placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-200" />
+        <input name="nom" required placeholder="Nom"
+          class="w-full rounded-xl px-5 py-4 text-[#172554] placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-200" />
+
+        <input type="email" name="email" required placeholder="Email"
+          class="w-full rounded-xl px-5 py-4 text-[#172554] placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-200" />
+        <input name="telephone" placeholder="Téléphone"
+          class="w-full rounded-xl px-5 py-4 text-[#172554] placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-200" />
+
+        <input name="entreprise" required placeholder="Entreprise"
+          class="md:col-span-2 w-full rounded-xl px-5 py-4 text-[#172554] placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-200" />
+
+        <textarea name="message" required rows="5"
+          placeholder="Ex: pipeline existe mais faible conversion SQL→Won, CRM sale, pas de scoring, relances manuelles, data éclatée…"
+          class="md:col-span-2 w-full rounded-xl px-5 py-4 text-[#172554] placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-200"></textarea>
+
+        <button type="submit"
+          class="md:col-span-2 bg-white text-[#172554] px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-50 transition-all">
+          Parler de votre projet
+        </button>
+
+        <div class="md:col-span-2 text-center text-[11px] text-blue-200">
+          Pas de spam. Réponse sous 48h ouvrées. <a class="underline underline-offset-4 hover:text-white" href="https://linkedin.com/in/simon-vanderosieren" target="_blank">LinkedIn</a>
+        </div>
+      </form>
     </div>
   </section>
 
-  <footer class="py-16 border-t border-slate-100">
+  <footer class="py-14 border-t border-slate-100">
     <div class="section-container flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
-      <div>© 2024 Simon Vande Rosieren</div>
+      <div>© 2025 Simon Vande Rosieren</div>
       <div class="flex gap-10">
         <a href="#" class="hover:text-[#172554]">Mentions légales</a>
-        <a href="#" class="hover:text-[#172554]">RevOps Framework</a>
       </div>
     </div>
   </footer>
@@ -472,7 +515,7 @@
           <div class="w-2/3 h-1 bg-slate-50 rounded mt-2"></div>
           ${badge}
         `;
-        gsap.to(deal, { opacity: 1, y: 0, duration: 0.5 });
+        gsap.to(deal, { opacity: 1, y: 0, duration: 0.45 });
         return deal;
       }
 
@@ -492,7 +535,8 @@
       }
 
       function setImpactCard() {
-        document.getElementById('contact-avatar').className = "h-12 w-12 bg-[#172554] rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-xs";
+        document.getElementById('contact-avatar').className =
+          "h-12 w-12 bg-[#172554] rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-xs";
         document.getElementById('contact-avatar').innerText = "JD";
         document.getElementById('contact-name').innerText = "Jean Dupont";
         document.getElementById('contact-company').innerText = "Globex — Head of Ops";
@@ -509,10 +553,10 @@
         document.getElementById('ia-badge-container').innerHTML = `
           <div class="p-4 bg-blue-50 border border-blue-100 rounded-xl mt-4 opacity-0 scale-95" id="ia-box">
             <div class="text-[9px] font-black text-blue-800 uppercase mb-2">Intelligence IA</div>
-            <div class="text-[10px] text-blue-900 font-semibold leading-snug">Score : 94/100. Compte prioritaire. <br>Action : relance contextualisée.</div>
+            <div class="text-[10px] text-blue-900 font-semibold leading-snug">Score : 94/100. Compte prioritaire.<br>Action : relance contextualisée.</div>
           </div>
         `;
-        gsap.to("#ia-box", { opacity: 1, scale: 1, duration: 0.5 });
+        gsap.to("#ia-box", { opacity: 1, scale: 1, duration: 0.45 });
       }
 
       function setAfterCard() {
@@ -533,7 +577,7 @@
             Lancer Onboarding
           </button>
         `;
-        gsap.to("#cta-onboard", { opacity: 1, duration: 0.5 });
+        gsap.to("#cta-onboard", { opacity: 1, duration: 0.45 });
       }
 
       function ACTE_1() {
@@ -611,15 +655,19 @@
         });
       }
 
+      // ✅ FIX: pin l'interface pour que l'acte 3 soit visible (plus de "scroll trop bas")
       ScrollTrigger.create({
         trigger: "#concept",
-        start: "top 40%",
-        end: "bottom center",
+        start: "top top",
+        end: "+=900",      // ajuste 700–1200 si besoin
+        pin: "#crm-pin",
+        pinSpacing: true,
+        scrub: false,
         onUpdate: (self) => {
           const p = self.progress;
           let currentAct = 0;
-          if (p > 0.35) currentAct = 1;
-          if (p > 0.75) currentAct = 2;
+          if (p > 0.28) currentAct = 1;
+          if (p > 0.62) currentAct = 2;
           setAct(currentAct);
         }
       });
@@ -635,4 +683,3 @@
   </script>
 </body>
 </html>
-
