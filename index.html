@@ -1,493 +1,473 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6d6d6d; -webkit-text-stroke: #6d6d6d}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #0000ff; -webkit-text-stroke: #0000ff}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6b0001; -webkit-text-stroke: #6b0001}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #fb0007; -webkit-text-stroke: #fb0007}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000; min-height: 16.0px}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #4d5055; -webkit-text-stroke: #4d5055}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #18702b; -webkit-text-stroke: #18702b}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #093c94; -webkit-text-stroke: #093c94}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #137646; -webkit-text-stroke: #137646}
-    span.s1 {font-kerning: none; background-color: #ecf1f7}
-    span.s2 {font-kerning: none; color: #fb0007; background-color: #ecf1f7; -webkit-text-stroke: 0px #fb0007}
-    span.s3 {font-kerning: none; color: #2a2a2a; background-color: #ecf1f7; -webkit-text-stroke: 0px #2a2a2a}
-    span.s4 {font-kerning: none; color: #6b0001; background-color: #ecf1f7; -webkit-text-stroke: 0px #6b0001}
-    span.s5 {font-kerning: none; color: #000000; background-color: #ecf1f7; -webkit-text-stroke: 0px #000000}
-    span.s6 {font-kerning: none; color: #0000ff; background-color: #ecf1f7; -webkit-text-stroke: 0px #0000ff}
-    span.s7 {font-kerning: none}
-    span.s8 {font-kerning: none; color: #6f0ec3; background-color: #ecf1f7; -webkit-text-stroke: 0px #6f0ec3}
-    span.s9 {font-kerning: none; color: #093c94; background-color: #ecf1f7; -webkit-text-stroke: 0px #093c94}
-    span.s10 {font-kerning: none; color: #18702b; background-color: #ecf1f7; -webkit-text-stroke: 0px #18702b}
-    span.s11 {font-kerning: none; color: #137646; background-color: #ecf1f7; -webkit-text-stroke: 0px #137646}
-    span.s12 {font-kerning: none; color: #4d5055; background-color: #ecf1f7; -webkit-text-stroke: 0px #4d5055}
-    span.s13 {font-kerning: none; color: #0e6e6d; background-color: #ecf1f7; -webkit-text-stroke: 0px #0e6e6d}
-    span.s14 {font-kerning: none; color: #a4450b; background-color: #ecf1f7; -webkit-text-stroke: 0px #a4450b}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Vande Rosieren | RevOps Systems Architecture</title>
+    
+    <!-- Scripts Externes : On s'assure qu'ils sont bien chargés avant le rendu -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --midnight-navy: #172554;
+            --soft-slate: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: var(--midnight-navy);
+            margin: 0;
+            padding: 0;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* CRM Preview Window */
+        .crm-window {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 30px 60px rgba(23, 37, 84, 0.12);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            height: 520px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .crm-header {
+            height: 44px;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 8px;
+        }
+
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        
+        .pipeline-stage {
+            flex: 1;
+            padding: 16px;
+            background: #f8fafc;
+            border-right: 1px solid #f1f5f9;
+            min-width: 150px;
+        }
+
+        .deal-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 11px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .status-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 9px;
+            display: inline-block;
+        }
+
+        .step-active-text {
+            color: var(--midnight-navy);
+            opacity: 1 !important;
+            transform: translateX(12px);
+            font-weight: 800;
+        }
+
+        .btn-midnight {
+            background-color: var(--midnight-navy);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-midnight:hover {
+            background-color: #1e3a8a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(23, 37, 84, 0.2);
+        }
+
+        .pipeline-scroll::-webkit-scrollbar { width: 4px; }
+        .pipeline-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        /* Animation de chargement pour éviter le flash de texte brut */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: opacity 0.5s ease;
+        }
+    </style>
 </head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE</span><span class="s2"> html</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s4">html</span><span class="s5"> </span><span class="s2">lang</span><span class="s3">=</span><span class="s1">"fr"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"scroll-smooth"</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">meta</span><span class="s5"> </span><span class="s1">charset</span><span class="s3">=</span><span class="s6">"UTF-8"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">meta</span><span class="s5"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"viewport"</span><span class="s5"> </span><span class="s2">content</span><span class="s3">=</span><span class="s1">"width=device-width, initial-scale=1.0"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">title</span><span class="s3">&gt;</span><span class="s1">Simon Vande Rosieren | RevOps Systems Architecture</span><span class="s3">&lt;/</span><span class="s4">title</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Scripts Externes --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdn.tailwindcss.com"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://unpkg.com/lucide@latest"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s8">@import</span><span class="s5"> </span><span class="s9">url</span><span class="s5">(</span><span class="s1">'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap'</span><span class="s5">);</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">:root</span><span class="s1"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">--midnight-navy:</span><span class="s5"> </span><span class="s9">#172554</span><span class="s5">; </span><span class="s1">/* Bleu Marine Minuit */</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">--soft-slate:</span><span class="s1"> </span><span class="s9">#F8FAFC</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">body</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-family:</span><span class="s1"> </span><span class="s10">'Inter'</span><span class="s1">, </span><span class="s9">sans-serif</span><span class="s1">;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">background-color:</span><span class="s5"> </span><span class="s9">#FFFFFF</span><span class="s5">;</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s5"> </span><span class="s1">var(--midnight-navy)</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.section-container</span><span class="s5"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">max-width:</span><span class="s1"> </span><span class="s11">1100px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">margin:</span><span class="s1"> </span><span class="s11">0</span><span class="s1"> </span><span class="s9">auto</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s11">0</span><span class="s1"> </span><span class="s11">2rem</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">/* Narrative Interface Styles */</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.crm-window</span><span class="s5"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background:</span><span class="s1"> </span><span class="s9">#ffffff</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-radius:</span><span class="s1"> </span><span class="s11">12px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">box-shadow:</span><span class="s1"> </span><span class="s11">0</span><span class="s1"> </span><span class="s11">30px</span><span class="s1"> </span><span class="s11">60px</span><span class="s1"> </span><span class="s9">rgba(</span><span class="s11">23</span><span class="s1">, </span><span class="s11">37</span><span class="s1">, </span><span class="s11">84</span><span class="s1">, </span><span class="s11">0.12</span><span class="s9">)</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border:</span><span class="s1"> </span><span class="s11">1px</span><span class="s1"> </span><span class="s9">solid</span><span class="s1"> </span><span class="s9">#e2e8f0</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">overflow:</span><span class="s1"> </span><span class="s9">hidden</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">height:</span><span class="s1"> </span><span class="s11">520px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">display:</span><span class="s1"> </span><span class="s9">flex</span><span class="s1">;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">flex-direction:</span><span class="s5"> </span><span class="s9">column</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">transition:</span><span class="s1"> </span><span class="s9">transform</span><span class="s1"> </span><span class="s11">0.3s</span><span class="s1"> </span><span class="s9">ease</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.crm-header</span><span class="s5"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">height:</span><span class="s1"> </span><span class="s11">44px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background:</span><span class="s1"> </span><span class="s9">#f1f5f9</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-bottom:</span><span class="s1"> </span><span class="s11">1px</span><span class="s1"> </span><span class="s9">solid</span><span class="s1"> </span><span class="s9">#e2e8f0</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">display:</span><span class="s1"> </span><span class="s9">flex</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">align-items:</span><span class="s1"> </span><span class="s9">center</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s11">0</span><span class="s1"> </span><span class="s11">16px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">gap:</span><span class="s1"> </span><span class="s11">8px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s4">.dot</span><span class="s5"> { </span><span class="s1">width:</span><span class="s5"> </span><span class="s11">10px</span><span class="s5">; </span><span class="s1">height:</span><span class="s5"> </span><span class="s11">10px</span><span class="s5">; </span><span class="s1">border-radius:</span><span class="s5"> </span><span class="s11">50%</span><span class="s5">; }</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.pipeline-stage</span><span class="s5"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">flex:</span><span class="s1"> </span><span class="s11">1</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s11">16px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background:</span><span class="s1"> </span><span class="s9">#f8fafc</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-right:</span><span class="s1"> </span><span class="s11">1px</span><span class="s1"> </span><span class="s9">solid</span><span class="s1"> </span><span class="s9">#f1f5f9</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">min-width:</span><span class="s1"> </span><span class="s11">150px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">.deal-card</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background:</span><span class="s1"> </span><span class="s9">white</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border:</span><span class="s1"> </span><span class="s11">1px</span><span class="s1"> </span><span class="s9">solid</span><span class="s1"> </span><span class="s9">#e2e8f0</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s11">12px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-radius:</span><span class="s1"> </span><span class="s11">6px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">margin-bottom:</span><span class="s1"> </span><span class="s11">10px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-size:</span><span class="s1"> </span><span class="s11">11px</span><span class="s1">;</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">transition:</span><span class="s5"> </span><span class="s9">all</span><span class="s5"> </span><span class="s1">0.4s</span><span class="s5"> </span><span class="s9">cubic-bezier(</span><span class="s1">0.175</span><span class="s5">, </span><span class="s1">0.885</span><span class="s5">, </span><span class="s1">0.32</span><span class="s5">, </span><span class="s1">1.275</span><span class="s9">)</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.status-badge</span><span class="s5"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">padding:</span><span class="s1"> </span><span class="s11">3px</span><span class="s1"> </span><span class="s11">8px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-radius:</span><span class="s1"> </span><span class="s11">4px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-weight:</span><span class="s1"> </span><span class="s11">800</span><span class="s1">;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">text-transform:</span><span class="s5"> </span><span class="s9">uppercase</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-size:</span><span class="s1"> </span><span class="s11">9px</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">display:</span><span class="s1"> </span><span class="s9">inline-block</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.step-active-text</span><span class="s5"> {</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s5"> </span><span class="s1">var(--midnight-navy)</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">opacity:</span><span class="s1"> </span><span class="s11">1</span><span class="s1"> </span><span class="s8">!important</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">transform:</span><span class="s1"> </span><span class="s9">translateX(</span><span class="s11">12px</span><span class="s9">)</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-weight:</span><span class="s1"> </span><span class="s11">800</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.btn-midnight</span><span class="s5"> {</span></p>
-<p class="p9"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">background-color:</span><span class="s5"> </span><span class="s1">var(--midnight-navy)</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">color:</span><span class="s1"> </span><span class="s9">white</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">transition:</span><span class="s1"> </span><span class="s9">all</span><span class="s1"> </span><span class="s11">0.3s</span><span class="s1"> </span><span class="s9">ease</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.btn-midnight:hover</span><span class="s5"> {</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">background-color:</span><span class="s5"> </span><span class="s9">#1e3a8a</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">transform:</span><span class="s1"> </span><span class="s9">translateY(</span><span class="s11">-2px</span><span class="s9">)</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">box-shadow:</span><span class="s1"> </span><span class="s11">0</span><span class="s1"> </span><span class="s11">10px</span><span class="s1"> </span><span class="s11">20px</span><span class="s1"> </span><span class="s9">rgba(</span><span class="s11">23</span><span class="s1">, </span><span class="s11">37</span><span class="s1">, </span><span class="s11">84</span><span class="s1">, </span><span class="s11">0.2</span><span class="s9">)</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">/* Custom Scrollbar for the CRM Preview */</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.pipeline-scroll::-webkit-scrollbar</span><span class="s5"> { </span><span class="s2">width:</span><span class="s5"> </span><span class="s11">4px</span><span class="s5">; }</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">.pipeline-scroll::-webkit-scrollbar-thumb</span><span class="s5"> { </span><span class="s2">background:</span><span class="s5"> </span><span class="s9">#cbd5e1</span><span class="s5">; </span><span class="s2">border-radius:</span><span class="s5"> </span><span class="s11">10px</span><span class="s5">; }</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;/</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s4">body</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"antialiased"</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Navigation --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">nav</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"fixed top-0 w-full z-50 py-6 bg-white/80 backdrop-blur-lg border-b border-slate-100"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"section-container flex justify-between items-center"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-sm font-black tracking-tighter uppercase flex items-center gap-3 text-[#172554]"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-8 h-8 bg-[#172554] rounded-lg flex items-center justify-center text-white text-[10px]"</span><span class="s3">&gt;</span><span class="s5">SV</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>Simon Vande Rosieren</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"hidden md:flex items-center gap-10"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">a</span><span class="s5"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"#concept"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors"</span><span class="s3">&gt;</span><span class="s5">Concept</span><span class="s3">&lt;/</span><span class="s4">a</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">a</span><span class="s5"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"#about"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors"</span><span class="s3">&gt;</span><span class="s5">Parcours</span><span class="s3">&lt;/</span><span class="s4">a</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">a</span><span class="s5"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"#contact"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"btn-midnight px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest"</span><span class="s3">&gt;</span><span class="s5">Consultation</span><span class="s3">&lt;/</span><span class="s4">a</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s4">nav</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Hero --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"pt-52 pb-32"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"section-container"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"max-w-4xl"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"inline-flex items-center gap-3 mb-10 px-4 py-1.5 border border-[#172554]/10 text-slate-500 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase bg-slate-50"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-2 h-2 bg-emerald-500 rounded-full animate-pulse"</span><span class="s3">&gt;&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>RevOps &amp; MarTech Architect</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">h1</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-12 text-[#172554]"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>Ingénierie de </span><span class="s3">&lt;</span><span class="s4">br</span><span class="s3">&gt;</span><span class="s1">Revenu B2B.</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">h1</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-xl text-slate-500 mb-14 max-w-2xl leading-relaxed font-medium"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>J'aligne vos outils sur vos objectifs de vente. J'élimine les frictions technologiques pour transformer votre CRM en un moteur de décision stratégique.</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex flex-wrap gap-6"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">a</span><span class="s5"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"#contact"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"btn-midnight px-12 py-5 rounded-full font-bold text-xs uppercase tracking-widest"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>Optimiser mon système</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">a</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">section</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- INTERFACE NARRATIVE (Animation 3 Actes) --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"concept"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-24 bg-soft-slate border-y border-slate-200 overflow-hidden"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"section-container"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"grid grid-cols-1 lg:grid-cols-12 gap-16 items-start"</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s1">&lt;!-- Texte Narratif (Gauche) --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"lg:col-span-4 space-y-12 py-10"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"text-1"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"opacity-20 transition-all duration-700"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-black uppercase tracking-[0.4em] text-red-500 mb-4 block"</span><span class="s3">&gt;</span><span class="s5">Acte 1 — Avant</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">h3</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-3xl font-black mb-4 tracking-tighter"</span><span class="s3">&gt;</span><span class="s5">Outil ≠ Décision</span><span class="s3">&lt;/</span><span class="s4">h3</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-sm text-slate-500 leading-relaxed font-medium"</span><span class="s3">&gt;</span><span class="s1">Pipeline surchargé, étapes floues, aucune priorité claire. On travaille dur, mais on navigue à vue.</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"text-2"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"opacity-20 transition-all duration-700"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-4 block"</span><span class="s3">&gt;</span><span class="s5">Acte 2 — Impact</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">h3</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-3xl font-black mb-4 tracking-tighter"</span><span class="s3">&gt;</span><span class="s1">Structuration RevOps</span><span class="s3">&lt;/</span><span class="s4">h3</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-sm text-slate-500 leading-relaxed font-medium"</span><span class="s3">&gt;</span><span class="s1">L'interface se transforme : centralisation des signaux, règles de qualification et enrichissement IA.</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"text-3"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"opacity-20 transition-all duration-700"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">span</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-4 block"</span><span class="s3">&gt;</span><span class="s5">Acte 3 — Après</span><span class="s3">&lt;/</span><span class="s4">span</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">h3</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-3xl font-black mb-4 tracking-tighter"</span><span class="s3">&gt;</span><span class="s5">Focus &amp; Closing</span><span class="s3">&lt;/</span><span class="s4">h3</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-sm text-slate-500 leading-relaxed font-medium"</span><span class="s3">&gt;</span><span class="s1">Le commercial voit les 3 opportunités prioritaires. On ne vend pas plus, on vend mieux.</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s1">&lt;!-- Interface CRM (Droite) --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"lg:col-span-8 sticky top-32"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"crm-window shadow-2xl"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"crm-header"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"dot bg-red-400/50"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"dot bg-amber-400/50"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"dot bg-emerald-400/50"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"ml-4 h-4 w-40 bg-slate-200/50 rounded-full"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex-1 flex overflow-hidden bg-white"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s12">&lt;!-- Pipeline --&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"pipeline-stage"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"stage-1-title"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest"</span><span class="s3">&gt;</span><span class="s5">Prospects</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"deals-col-1"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"pipeline-scroll overflow-y-auto h-full pr-1"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"pipeline-stage"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"stage-2-title"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest"</span><span class="s3">&gt;</span><span class="s5">En cours</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"deals-col-2"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"pipeline-scroll overflow-y-auto h-full pr-1"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"pipeline-stage"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"stage-3-title"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest"</span><span class="s3">&gt;</span><span class="s5">Fermeture</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"deals-col-3"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"pipeline-scroll overflow-y-auto h-full pr-1"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s12">&lt;!-- Panneau Latéral --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"side-panel"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-72 border-l border-slate-100 p-8 bg-slate-50/30"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-black text-slate-400 uppercase mb-8 tracking-widest"</span><span class="s3">&gt;</span><span class="s5">Fiche Contact</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">id</span><span class="s3">=</span><span class="s6">"contact-card-content"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"space-y-6"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex gap-4 items-center"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"contact-avatar"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"h-12 w-12 bg-slate-200 rounded-full flex-shrink-0"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"space-y-2 w-full"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"h-3 w-3/4 bg-slate-200 rounded"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"h-2 w-1/2 bg-slate-200 rounded"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">hr</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"border-slate-200"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"space-y-3"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"h-2 w-full bg-slate-100 rounded"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"h-2 w-5/6 bg-slate-100 rounded"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">id</span><span class="s3">=</span><span class="s6">"ia-badge-container"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s12">&lt;!-- Barre de statut --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"h-14 bg-white border-t border-slate-100 px-8 flex items-center justify-between"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-bold text-slate-400 uppercase tracking-tighter"</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"status-bar"</span><span class="s3">&gt;</span><span class="s5">Diagnostic...</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex items-center gap-4"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[9px] font-black text-slate-300 uppercase tracking-widest"</span><span class="s3">&gt;</span><span class="s5">Revenue Forecast</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"revenue-gauge"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-24 h-2 bg-slate-100 rounded-full overflow-hidden"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"revenue-fill"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"h-full bg-[#172554] w-0 transition-all duration-1000"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">section</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Section Parcours (Sarbacane, etc.) --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"about"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-36"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"section-container"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"grid grid-cols-1 lg:grid-cols-2 gap-24 items-center"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"relative"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"aspect-[4/5] bg-slate-50 border hairline rounded-2xl p-10 flex flex-col justify-between"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"space-y-8"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-black text-[#172554] uppercase tracking-[0.4em]"</span><span class="s3">&gt;</span><span class="s5">Expertise MarTech</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">h3</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-4xl font-extrabold tracking-tighter"</span><span class="s3">&gt;</span><span class="s1">Stack Maîtrisée</span><span class="s3">&lt;/</span><span class="s4">h3</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"grid grid-cols-2 gap-6"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 bg-white border border-slate-100 rounded-xl shadow-sm"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[9px] font-bold text-slate-400 uppercase mb-2"</span><span class="s3">&gt;</span><span class="s5">Automation</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"font-bold text-sm"</span><span class="s3">&gt;</span><span class="s1">Make.com / Zapier</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 bg-white border border-slate-100 rounded-xl shadow-sm"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[9px] font-bold text-slate-400 uppercase mb-2"</span><span class="s3">&gt;</span><span class="s5">CRM</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"font-bold text-sm"</span><span class="s3">&gt;</span><span class="s1">Salesforce / HubSpot</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 bg-white border border-slate-100 rounded-xl shadow-sm"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[9px] font-bold text-slate-400 uppercase mb-2"</span><span class="s3">&gt;</span><span class="s5">Data</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"font-bold text-sm"</span><span class="s3">&gt;</span><span class="s1">SQL / APIs / MySQL</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"p-4 bg-white border border-slate-100 rounded-xl shadow-sm"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[9px] font-bold text-slate-400 uppercase mb-2"</span><span class="s3">&gt;</span><span class="s5">SalesTech</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"font-bold text-sm"</span><span class="s3">&gt;</span><span class="s1">Sales Enablement</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"pt-10 border-t border-slate-100"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4"</span><span class="s3">&gt;</span><span class="s5">Parcours Clé</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex items-center gap-4"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-10 h-10 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xs"</span><span class="s3">&gt;</span><span class="s5">S</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"font-bold text-sm"</span><span class="s3">&gt;</span><span class="s1">Sarbacane Software</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-xs text-slate-400"</span><span class="s3">&gt;</span><span class="s1">Chef de projet Marketing Acquisition &amp; Sales Ops</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">h2</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-5xl font-extrabold tracking-tighter text-[#172554] mb-10 leading-tight"</span><span class="s3">&gt;</span><span class="s5">L'architecte de votre croissance.</span><span class="s3">&lt;/</span><span class="s4">h2</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-slate-500 text-lg leading-relaxed mb-8"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>Après avoir piloté l'acquisition et les Sales Ops pour des leaders comme **Sarbacane**, j'accompagne aujourd'hui les entreprises B2B dans la construction de leurs systèmes de revenus.</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-slate-500 text-lg leading-relaxed mb-12"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>Mon approche combine la rigueur de l'ingénierie logicielle (APIs, SQL, No-Code) et l'agilité du Growth Marketing pour créer des pipelines fluides et prédictibles.</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex flex-col gap-6"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex items-center gap-6 p-6 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">i</span><span class="s5"> </span><span class="s2">data-lucide</span><span class="s3">=</span><span class="s1">"award"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-8 h-8 text-[#172554]"</span><span class="s3">&gt;&lt;/</span><span class="s4">i</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"font-bold"</span><span class="s3">&gt;</span><span class="s1">Master II Stratégie Web Marketing</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                                </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-sm text-slate-400"</span><span class="s3">&gt;</span><span class="s1">Expert en pilotage de performance digitale.</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">section</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- Contact CTA --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">section</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"contact"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-32 bg-[#172554] text-white"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"section-container text-center max-w-3xl"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">h2</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-6xl font-extrabold tracking-tighter mb-10"</span><span class="s3">&gt;</span><span class="s5">On vend mieux.</span><span class="s3">&lt;/</span><span class="s4">h2</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">p</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"text-blue-200 text-xl mb-16 font-medium"</span><span class="s3">&gt;</span><span class="s1">Prêt à transformer votre CRM en un actif stratégique ? Discutons de vos enjeux RevOps.</span><span class="s3">&lt;/</span><span class="s4">p</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex flex-wrap justify-center gap-8"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">a</span><span class="s5"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"mailto:vanderosieren.simon@gmail.com"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-white text-[#172554] px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-50 transition-all"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>Envoyer un email</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">a</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">a</span><span class="s5"> </span><span class="s2">href</span><span class="s3">=</span><span class="s1">"https://linkedin.com/in/simon-vanderosieren"</span><span class="s5"> </span><span class="s2">target</span><span class="s3">=</span><span class="s1">"_blank"</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border border-white/20 px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>Me contacter sur LinkedIn</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s4">a</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">section</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">footer</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-16 border-t border-slate-100"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"section-container flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s3">&gt;</span><span class="s1">© 2024 Simon Vande Rosieren</span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"flex gap-10"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s6">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"hover:text-[#172554]"</span><span class="s3">&gt;</span><span class="s1">Mentions Légales</span><span class="s3">&lt;/</span><span class="s4">a</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s4">a</span><span class="s1"> </span><span class="s2">href</span><span class="s3">=</span><span class="s6">"#"</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s6">"hover:text-[#172554]"</span><span class="s3">&gt;</span><span class="s1">RevOps Framework</span><span class="s3">&lt;/</span><span class="s4">a</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">footer</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// Initialisation des icônes</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>lucide.createIcons();</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// --- MOTEUR D'ANIMATION NARRATIVE ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> dealsCol1 = document.getElementById(</span><span class="s10">'deals-col-1'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> dealsCol2 = document.getElementById(</span><span class="s10">'deals-col-2'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> dealsCol3 = document.getElementById(</span><span class="s10">'deals-col-3'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> sidePanelContent = document.getElementById(</span><span class="s10">'contact-card-content'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> statusBar = document.getElementById(</span><span class="s10">'status-bar'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> revenueFill = document.getElementById(</span><span class="s10">'revenue-fill'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> stage1Title = document.getElementById(</span><span class="s10">'stage-1-title'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> stage2Title = document.getElementById(</span><span class="s10">'stage-2-title'</span><span class="s1">);</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s5"> dealNames = [</span><span class="s1">"Acme Corp"</span><span class="s5">, </span><span class="s1">"Globex"</span><span class="s5">, </span><span class="s1">"Initech"</span><span class="s5">, </span><span class="s1">"Umbrella"</span><span class="s5">, </span><span class="s1">"Cyberdyne"</span><span class="s5">, </span><span class="s1">"Soylent"</span><span class="s5">, </span><span class="s1">"Stark Ind."</span><span class="s5">, </span><span class="s1">"Wayne Ent."</span><span class="s5">, </span><span class="s1">"Tyrell Corp"</span><span class="s5">, </span><span class="s1">"Oscorp"</span><span class="s5">];</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">function</span><span class="s1"> clearPipeline() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>dealsCol1.innerHTML = </span><span class="s10">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>dealsCol2.innerHTML = </span><span class="s10">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>dealsCol3.innerHTML = </span><span class="s10">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">function</span><span class="s1"> createDeal(name, status = </span><span class="s10">''</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> deal = document.createElement(</span><span class="s10">'div'</span><span class="s1">);</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>deal.className = </span><span class="s1">'deal-card animate-in fade-in slide-in-from-bottom-2 duration-500'</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">let</span><span class="s1"> badge = status ? </span><span class="s10">`&lt;div class="status-badge </span><span class="s1">${status.bg}</span><span class="s10"> </span><span class="s1">${status.text}</span><span class="s10"> mt-2"&gt;</span><span class="s1">${status.label}</span><span class="s10">&lt;/div&gt;`</span><span class="s1"> : </span><span class="s10">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>deal.innerHTML = </span><span class="s10">`</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="font-black text-[#172554]"&gt;</span><span class="s5">${name}</span><span class="s1">&lt;/div&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="w-2/3 h-1 bg-slate-50 rounded mt-2"&gt;&lt;/div&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s5">${badge}</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">            </span>`</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">return</span><span class="s1"> deal;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">function</span><span class="s1"> </span><span class="s13">ACTE_1</span><span class="s1">() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>clearPipeline();</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">// Pipeline surchargé</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">for</span><span class="s1">(</span><span class="s8">let</span><span class="s1"> i=</span><span class="s14">0</span><span class="s1">; i&lt;</span><span class="s14">8</span><span class="s1">; i++) dealsCol1.appendChild(createDeal(dealNames[i]));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">for</span><span class="s1">(</span><span class="s8">let</span><span class="s1"> i=</span><span class="s14">0</span><span class="s1">; i&lt;</span><span class="s14">6</span><span class="s1">; i++) dealsCol2.appendChild(createDeal(dealNames[i+</span><span class="s14">2</span><span class="s1">]));</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>stage1Title.innerText = </span><span class="s10">"PROSPECTS (BRUT)"</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>stage2Title.innerText = </span><span class="s10">"EN COURS (?)"</span><span class="s1">;</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>statusBar.innerText = </span><span class="s1">"ALERTE : NAVIGUE À VUE / KPI CONTRADICTOIRES"</span><span class="s5">;</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>statusBar.className = </span><span class="s1">"text-[10px] font-black text-red-500 uppercase tracking-tighter"</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>revenueFill.style.width = </span><span class="s10">"15%"</span><span class="s1">;</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">// Fiche contact pauvre</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s1">'contact-avatar'</span><span class="s5">).className = </span><span class="s1">"h-12 w-12 bg-slate-200 rounded-full flex-shrink-0"</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s10">'ia-badge-container'</span><span class="s1">).innerHTML = </span><span class="s10">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">function</span><span class="s1"> </span><span class="s13">ACTE_2</span><span class="s1">() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>clearPipeline();</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">// Pipeline structuré</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s5"> mqls = [</span><span class="s1">"Globex"</span><span class="s5">, </span><span class="s1">"Stark Ind"</span><span class="s5">, </span><span class="s1">"Initech"</span><span class="s5">];</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>mqls.forEach(name =&gt; dealsCol1.appendChild(createDeal(name, {label: </span><span class="s10">'SIGNAL DÉTECTÉ'</span><span class="s1">, bg: </span><span class="s10">'bg-blue-100'</span><span class="s1">, text: </span><span class="s10">'text-blue-700'</span><span class="s1">})));</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> sqls = [</span><span class="s10">"Acme Corp"</span><span class="s1">, </span><span class="s10">"Wayne Ent"</span><span class="s1">];</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>sqls.forEach(name =&gt; dealsCol2.appendChild(createDeal(name, {label: </span><span class="s10">'VÉRIFIÉ'</span><span class="s1">, bg: </span><span class="s10">'bg-indigo-100'</span><span class="s1">, text: </span><span class="s10">'text-indigo-700'</span><span class="s1">})));</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>stage1Title.innerText = </span><span class="s10">"MQL QUALIFIÉS"</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>stage2Title.innerText = </span><span class="s10">"SQL VÉRIFIÉS"</span><span class="s1">;</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>statusBar.innerText = </span><span class="s1">"SYSTÈME REVOPS : DÉCISION AIDÉE PAR LA DATA"</span><span class="s5">;</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>statusBar.className = </span><span class="s1">"text-[10px] font-black text-blue-600 uppercase tracking-tighter"</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>revenueFill.style.width = </span><span class="s10">"45%"</span><span class="s1">;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">// Fiche contact enrichie</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s1">'contact-avatar'</span><span class="s5">).className = </span><span class="s1">"h-12 w-12 bg-[#172554] rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-xs"</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s10">'contact-avatar'</span><span class="s1">).innerText = </span><span class="s10">"JD"</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s10">'ia-badge-container'</span><span class="s1">).innerHTML = </span><span class="s10">`</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="p-4 bg-blue-50 border border-blue-100 rounded-xl mt-4 animate-in zoom-in duration-500"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="text-[9px] font-black text-blue-800 uppercase mb-2"&gt;Intelligence IA&lt;/div&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="text-[10px] text-blue-900 font-semibold leading-snug"&gt;Score : 94/100. Compte prioritaire. &lt;br&gt;Action : Rappel contextuel via LinkedIn.&lt;/div&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">            </span>`</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">function</span><span class="s1"> </span><span class="s13">ACTE_3</span><span class="s1">() {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>clearPipeline();</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">// Focus closing</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>dealsCol2.appendChild(createDeal(</span><span class="s10">"Stark Ind."</span><span class="s1">, {label: </span><span class="s10">'PRIORITÉ HAUTE'</span><span class="s1">, bg: </span><span class="s10">'bg-emerald-100'</span><span class="s1">, text: </span><span class="s10">'text-emerald-700'</span><span class="s1">}));</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> wonDeal = createDeal(</span><span class="s10">"Globex - SIGNÉ"</span><span class="s1">, {label: </span><span class="s10">'WON'</span><span class="s1">, bg: </span><span class="s10">'bg-emerald-500'</span><span class="s1">, text: </span><span class="s10">'text-white'</span><span class="s1">});</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>wonDeal.className += </span><span class="s1">" border-emerald-500 shadow-lg shadow-emerald-100"</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>dealsCol3.appendChild(wonDeal);</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>statusBar.innerText = </span><span class="s1">"STABILITÉ : REVENU PRÉDICTIBLE &amp; FOCUS CLOSING"</span><span class="s5">;</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>statusBar.className = </span><span class="s1">"text-[10px] font-black text-emerald-600 uppercase tracking-tighter"</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>revenueFill.style.width = </span><span class="s10">"95%"</span><span class="s1">;</span></p>
-<p class="p8"><span class="s5"><span class="Apple-converted-space">            </span>revenueFill.className = </span><span class="s1">"h-full bg-emerald-500 w-0 transition-all duration-1000"</span><span class="s5">;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">// Bouton d'action sur la fiche</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById(</span><span class="s10">'ia-badge-container'</span><span class="s1">).innerHTML = </span><span class="s10">`</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button class="w-full py-4 bg-[#172554] text-white text-[10px] font-black rounded-xl uppercase tracking-widest mt-4 shadow-xl shadow-blue-900/20 hover:scale-105 transition-transform"&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span>Lancer Onboarding</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">            </span>`</span><span class="s5">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// --- GESTION DU SCROLL (GSAP) ---</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>gsap.registerPlugin(</span><span class="s13">ScrollTrigger</span><span class="s1">);</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> acts = [</span><span class="s13">ACTE_1</span><span class="s1">, </span><span class="s13">ACTE_2</span><span class="s1">, </span><span class="s13">ACTE_3</span><span class="s1">];</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s13">ScrollTrigger</span><span class="s1">.create({</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>trigger: </span><span class="s10">"#concept"</span><span class="s1">,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>start: </span><span class="s10">"top 40%"</span><span class="s1">,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>end: </span><span class="s10">"bottom center"</span><span class="s1">,</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>onUpdate: (self) =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">const</span><span class="s1"> progress = self.progress;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">let</span><span class="s1"> currentAct = </span><span class="s14">0</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">if</span><span class="s1">(progress &gt; </span><span class="s14">0.35</span><span class="s1">) currentAct = </span><span class="s14">1</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s8">if</span><span class="s1">(progress &gt; </span><span class="s14">0.75</span><span class="s1">) currentAct = </span><span class="s14">2</span><span class="s1">;</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>acts[currentAct]();</span></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">                </span></span><span class="s1">// Update text opacity &amp; position</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>[</span><span class="s14">1</span><span class="s1">,</span><span class="s14">2</span><span class="s1">,</span><span class="s14">3</span><span class="s1">].forEach(i =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s8">const</span><span class="s1"> el = document.getElementById(</span><span class="s10">`text-</span><span class="s1">${i}</span><span class="s10">`</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s8">if</span><span class="s1">(i === currentAct + </span><span class="s14">1</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>el.classList.add(</span><span class="s10">'step-active-text'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>} </span><span class="s8">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>el.classList.remove(</span><span class="s10">'step-active-text'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p6"><span class="s7"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// Lancement initial</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s13">ACTE_1</span><span class="s1">();</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;/</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;/</span><span class="s1">html</span><span class="s3">&gt;</span></p>
+<body class="antialiased opacity-0 transition-opacity duration-700" id="main-body">
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="text-[10px] font-black tracking-widest uppercase animate-pulse">Initialisation RevOps...</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 py-6 bg-white/80 backdrop-blur-lg border-b border-slate-100">
+        <div class="section-container flex justify-between items-center">
+            <div class="text-sm font-black tracking-tighter uppercase flex items-center gap-3 text-[#172554]">
+                <div class="w-8 h-8 bg-[#172554] rounded-lg flex items-center justify-center text-white text-[10px]">SV</div>
+                Simon Vande Rosieren
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#concept" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Concept</a>
+                <a href="#about" class="text-[11px] font-bold text-slate-400 uppercase tracking-widest hover:text-[#172554] transition-colors">Parcours</a>
+                <a href="#contact" class="btn-midnight px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest">Consultation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-52 pb-32">
+        <div class="section-container">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center gap-3 mb-10 px-4 py-1.5 border border-[#172554]/10 text-slate-500 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase bg-slate-50">
+                    <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    RevOps & MarTech Architect
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-12 text-[#172554]">
+                    Ingénierie de <br>Revenu B2B.
+                </h1>
+                <p class="text-xl text-slate-500 mb-14 max-w-2xl leading-relaxed font-medium">
+                    J'aligne vos outils sur vos objectifs de vente. J'élimine les frictions technologiques pour transformer votre CRM en un moteur de décision stratégique.
+                </p>
+                <div class="flex flex-wrap gap-6">
+                    <a href="#contact" class="btn-midnight px-12 py-5 rounded-full font-bold text-xs uppercase tracking-widest">
+                        Optimiser mon système
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERFACE NARRATIVE (Animation 3 Actes) -->
+    <section id="concept" class="py-24 bg-soft-slate border-y border-slate-200 overflow-hidden">
+        <div class="section-container">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Texte Narratif (Gauche) -->
+                <div class="lg:col-span-4 space-y-12 py-10">
+                    <div id="text-1" class="opacity-20 transition-all duration-700">
+                        <span class="text-[10px] font-black uppercase tracking-[0.4em] text-red-500 mb-4 block">Acte 1 — Avant</span>
+                        <h3 class="text-3xl font-black mb-4 tracking-tighter">Outil ≠ Décision</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed font-medium">Pipeline surchargé, étapes floues, aucune priorité claire. On travaille dur, mais on navigue à vue.</p>
+                    </div>
+                    
+                    <div id="text-2" class="opacity-20 transition-all duration-700">
+                        <span class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-4 block">Acte 2 — Impact</span>
+                        <h3 class="text-3xl font-black mb-4 tracking-tighter">Structuration RevOps</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed font-medium">L'interface se transforme : centralisation des signaux, règles de qualification et enrichissement IA.</p>
+                    </div>
+
+                    <div id="text-3" class="opacity-20 transition-all duration-700">
+                        <span class="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-4 block">Acte 3 — Après</span>
+                        <h3 class="text-3xl font-black mb-4 tracking-tighter">Focus & Closing</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed font-medium">Le commercial voit les 3 opportunités prioritaires. On ne vend pas plus, on vend mieux.</p>
+                    </div>
+                </div>
+
+                <!-- Interface CRM (Droite) -->
+                <div class="lg:col-span-8 sticky top-32">
+                    <div class="crm-window shadow-2xl">
+                        <div class="crm-header">
+                            <div class="dot bg-red-400/50"></div><div class="dot bg-amber-400/50"></div><div class="dot bg-emerald-400/50"></div>
+                            <div class="ml-4 h-4 w-40 bg-slate-200/50 rounded-full"></div>
+                        </div>
+                        
+                        <div class="flex-1 flex overflow-hidden bg-white">
+                            <!-- Pipeline -->
+                            <div class="pipeline-stage">
+                                <div id="stage-1-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">Prospects</div>
+                                <div id="deals-col-1" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
+                            </div>
+                            <div class="pipeline-stage">
+                                <div id="stage-2-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">En cours</div>
+                                <div id="deals-col-2" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
+                            </div>
+                            <div class="pipeline-stage">
+                                <div id="stage-3-title" class="text-[10px] font-black text-slate-400 uppercase mb-5 tracking-widest">Fermeture</div>
+                                <div id="deals-col-3" class="pipeline-scroll overflow-y-auto h-full pr-1"></div>
+                            </div>
+
+                            <!-- Panneau Latéral -->
+                            <div id="side-panel" class="w-72 border-l border-slate-100 p-8 bg-slate-50/30">
+                                <div class="text-[10px] font-black text-slate-400 uppercase mb-8 tracking-widest">Fiche Contact</div>
+                                <div id="contact-card-content" class="space-y-6">
+                                    <div class="flex gap-4 items-center">
+                                        <div id="contact-avatar" class="h-12 w-12 bg-slate-200 rounded-full flex-shrink-0"></div>
+                                        <div class="space-y-2 w-full">
+                                            <div class="h-3 w-3/4 bg-slate-200 rounded"></div>
+                                            <div class="h-2 w-1/2 bg-slate-200 rounded"></div>
+                                        </div>
+                                    </div>
+                                    <hr class="border-slate-200">
+                                    <div class="space-y-3">
+                                        <div class="h-2 w-full bg-slate-100 rounded"></div>
+                                        <div class="h-2 w-5/6 bg-slate-100 rounded"></div>
+                                        <div id="ia-badge-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Barre de statut -->
+                        <div class="h-14 bg-white border-t border-slate-100 px-8 flex items-center justify-between">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter" id="status-bar">Diagnostic...</div>
+                            <div class="flex items-center gap-4">
+                                <div class="text-[9px] font-black text-slate-300 uppercase tracking-widest">Revenue Forecast</div>
+                                <div id="revenue-gauge" class="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
+                                    <div id="revenue-fill" class="h-full bg-[#172554] w-0 transition-all duration-1000"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Parcours -->
+    <section id="about" class="py-36">
+        <div class="section-container">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                <div class="relative">
+                    <div class="aspect-[4/5] bg-slate-50 border border-slate-200 rounded-2xl p-10 flex flex-col justify-between">
+                        <div class="space-y-8">
+                            <div class="text-[10px] font-black text-[#172554] uppercase tracking-[0.4em]">Expertise MarTech</div>
+                            <h3 class="text-4xl font-extrabold tracking-tighter">Stack Maîtrisée</h3>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                                    <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Automation</div>
+                                    <div class="font-bold text-sm">Make.com / Zapier</div>
+                                </div>
+                                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                                    <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">CRM</div>
+                                    <div class="font-bold text-sm">Salesforce / HubSpot</div>
+                                </div>
+                                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                                    <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">Data</div>
+                                    <div class="font-bold text-sm">SQL / APIs / MySQL</div>
+                                </div>
+                                <div class="p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                                    <div class="text-[9px] font-bold text-slate-400 uppercase mb-2">SalesTech</div>
+                                    <div class="font-bold text-sm">Sales Enablement</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-10 border-t border-slate-100">
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Parcours Clé</div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xs">S</div>
+                                <div>
+                                    <div class="font-bold text-sm">Sarbacane Software</div>
+                                    <div class="text-xs text-slate-400">Chef de projet Marketing Acquisition & Sales Ops</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-5xl font-extrabold tracking-tighter text-[#172554] mb-10 leading-tight">L'architecte de votre croissance.</h2>
+                    <p class="text-slate-500 text-lg leading-relaxed mb-8">
+                        Après avoir piloté l'acquisition et les Sales Ops pour des leaders comme **Sarbacane**, j'accompagne aujourd'hui les entreprises B2B dans la construction de leurs systèmes de revenus.
+                    </p>
+                    <p class="text-slate-500 text-lg leading-relaxed mb-12">
+                        Mon approche combine la rigueur de l'ingénierie logicielle (APIs, SQL, No-Code) et l'agilité du Growth Marketing pour créer des pipelines fluides et prédictibles.
+                    </p>
+                    <div class="flex flex-col gap-6">
+                        <div class="flex items-center gap-6 p-6 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors">
+                            <i data-lucide="award" class="w-8 h-8 text-[#172554]"></i>
+                            <div>
+                                <div class="font-bold">Master II Stratégie Web Marketing</div>
+                                <div class="text-sm text-slate-400">Expert en pilotage de performance digitale.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="contact" class="py-32 bg-[#172554] text-white">
+        <div class="section-container text-center max-w-3xl">
+            <h2 class="text-6xl font-extrabold tracking-tighter mb-10">On vend mieux.</h2>
+            <p class="text-blue-200 text-xl mb-16 font-medium">Prêt à transformer votre CRM en un actif stratégique ? Discutons de vos enjeux RevOps.</p>
+            <div class="flex flex-wrap justify-center gap-8">
+                <a href="mailto:vanderosieren.simon@gmail.com" class="bg-white text-[#172554] px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-50 transition-all">
+                    Envoyer un email
+                </a>
+                <a href="https://linkedin.com/in/simon-vanderosieren" target="_blank" class="border border-white/20 px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">
+                    Me contacter sur LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 border-t border-slate-100">
+        <div class="section-container flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
+            <div>© 2024 Simon Vande Rosieren</div>
+            <div class="flex gap-10">
+                <a href="#" class="hover:text-[#172554]">Mentions Légales</a>
+                <a href="#" class="hover:text-[#172554]">RevOps Framework</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion du chargement
+        window.onload = function() {
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('main-body').classList.remove('opacity-0');
+            }, 500);
+
+            // Initialisation des icônes
+            lucide.createIcons();
+
+            // --- MOTEUR D'ANIMATION NARRATIVE ---
+            const dealsCol1 = document.getElementById('deals-col-1');
+            const dealsCol2 = document.getElementById('deals-col-2');
+            const dealsCol3 = document.getElementById('deals-col-3');
+            const statusBar = document.getElementById('status-bar');
+            const revenueFill = document.getElementById('revenue-fill');
+            const stage1Title = document.getElementById('stage-1-title');
+            const stage2Title = document.getElementById('stage-2-title');
+
+            const dealNames = ["Acme Corp", "Globex", "Initech", "Umbrella", "Cyberdyne", "Soylent", "Stark Ind.", "Wayne Ent.", "Tyrell Corp", "Oscorp"];
+
+            function clearPipeline() {
+                dealsCol1.innerHTML = '';
+                dealsCol2.innerHTML = '';
+                dealsCol3.innerHTML = '';
+            }
+
+            function createDeal(name, status = '') {
+                const deal = document.createElement('div');
+                deal.className = 'deal-card opacity-0 translate-y-2';
+                let badge = status ? `<div class="status-badge ${status.bg} ${status.text} mt-2">${status.label}</div>` : '';
+                deal.innerHTML = `
+                    <div class="font-black text-[#172554]">${name}</div>
+                    <div class="w-2/3 h-1 bg-slate-50 rounded mt-2"></div>
+                    ${badge}
+                `;
+                gsap.to(deal, { opacity: 1, y: 0, duration: 0.5 });
+                return deal;
+            }
+
+            function ACTE_1() {
+                clearPipeline();
+                for(let i=0; i<8; i++) dealsCol1.appendChild(createDeal(dealNames[i]));
+                for(let i=0; i<6; i++) dealsCol2.appendChild(createDeal(dealNames[i+2]));
+                
+                stage1Title.innerText = "PROSPECTS (BRUT)";
+                stage2Title.innerText = "EN COURS (?)";
+                statusBar.innerText = "ALERTE : NAVIGUE À VUE / KPI CONTRADICTOIRES";
+                statusBar.className = "text-[10px] font-black text-red-500 uppercase tracking-tighter";
+                revenueFill.style.width = "15%";
+                document.getElementById('contact-avatar').className = "h-12 w-12 bg-slate-200 rounded-full flex-shrink-0";
+                document.getElementById('ia-badge-container').innerHTML = '';
+            }
+
+            function ACTE_2() {
+                clearPipeline();
+                ["Globex", "Stark Ind", "Initech"].forEach(name => dealsCol1.appendChild(createDeal(name, {label: 'SIGNAL DÉTECTÉ', bg: 'bg-blue-100', text: 'text-blue-700'})));
+                ["Acme Corp", "Wayne Ent"].forEach(name => dealsCol2.appendChild(createDeal(name, {label: 'VÉRIFIÉ', bg: 'bg-indigo-100', text: 'text-indigo-700'})));
+
+                stage1Title.innerText = "MQL QUALIFIÉS";
+                stage2Title.innerText = "SQL VÉRIFIÉS";
+                statusBar.innerText = "SYSTÈME REVOPS : DÉCISION AIDÉE PAR LA DATA";
+                statusBar.className = "text-[10px] font-black text-blue-600 uppercase tracking-tighter";
+                revenueFill.style.width = "45%";
+                document.getElementById('contact-avatar').className = "h-12 w-12 bg-[#172554] rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-xs";
+                document.getElementById('contact-avatar').innerText = "JD";
+                document.getElementById('ia-badge-container').innerHTML = `
+                    <div class="p-4 bg-blue-50 border border-blue-100 rounded-xl mt-4 opacity-0 scale-95" id="ia-box">
+                        <div class="text-[9px] font-black text-blue-800 uppercase mb-2">Intelligence IA</div>
+                        <div class="text-[10px] text-blue-900 font-semibold leading-snug">Score : 94/100. Compte prioritaire. <br>Action : Rappel contextuel via LinkedIn.</div>
+                    </div>
+                `;
+                gsap.to("#ia-box", { opacity: 1, scale: 1, duration: 0.5 });
+            }
+
+            function ACTE_3() {
+                clearPipeline();
+                dealsCol2.appendChild(createDeal("Stark Ind.", {label: 'PRIORITÉ HAUTE', bg: 'bg-emerald-100', text: 'text-emerald-700'}));
+                const wonDeal = createDeal("Globex - SIGNÉ", {label: 'WON', bg: 'bg-emerald-500', text: 'text-white'});
+                wonDeal.className += " border-emerald-500 shadow-lg shadow-emerald-100";
+                dealsCol3.appendChild(wonDeal);
+
+                statusBar.innerText = "STABILITÉ : REVENU PRÉDICTIBLE & FOCUS CLOSING";
+                statusBar.className = "text-[10px] font-black text-emerald-600 uppercase tracking-tighter";
+                revenueFill.style.width = "95%";
+                document.getElementById('ia-badge-container').innerHTML = `
+                    <button class="w-full py-4 bg-[#172554] text-white text-[10px] font-black rounded-xl uppercase tracking-widest mt-4 shadow-xl shadow-blue-900/20 hover:scale-105 transition-transform opacity-0" id="cta-onboard">
+                        Lancer Onboarding
+                    </button>
+                `;
+                gsap.to("#cta-onboard", { opacity: 1, duration: 0.5 });
+            }
+
+            // --- GESTION DU SCROLL (GSAP) ---
+            gsap.registerPlugin(ScrollTrigger);
+            const acts = [ACTE_1, ACTE_2, ACTE_3];
+            let lastAct = -1;
+
+            ScrollTrigger.create({
+                trigger: "#concept",
+                start: "top 40%",
+                end: "bottom center",
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    let currentAct = 0;
+                    if(progress > 0.35) currentAct = 1;
+                    if(progress > 0.75) currentAct = 2;
+
+                    if (currentAct !== lastAct) {
+                        acts[currentAct]();
+                        lastAct = currentAct;
+                    }
+                    
+                    [1,2,3].forEach(i => {
+                        const el = document.getElementById(`text-${i}`);
+                        if(i === currentAct + 1) {
+                            el.classList.add('step-active-text');
+                            el.style.opacity = "1";
+                        } else {
+                            el.classList.remove('step-active-text');
+                            el.style.opacity = "0.2";
+                        }
+                    });
+                }
+            });
+
+            ACTE_1();
+        };
+    </script>
 </body>
 </html>
